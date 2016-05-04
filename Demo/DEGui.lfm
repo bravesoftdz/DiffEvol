@@ -1,15 +1,16 @@
 object Form1: TForm1
-  Left = 1780
+  Left = 2046
   Height = 691
-  Top = 163
+  Top = 201
   Width = 478
-  Caption = 'Form1'
+  Caption = 'VSDE'
   ClientHeight = 691
   ClientWidth = 478
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
+  Font.Style = [fsBold]
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '1.6.0.4'
@@ -29,8 +30,86 @@ object Form1: TForm1
     Height = 25
     Top = 576
     Width = 89
-    Caption = 'Go Run'
+    Caption = 'Run'
     OnClick = ButtonClick
     TabOrder = 1
+  end
+  object Label1: TLabel
+    Left = 19
+    Height = 13
+    Top = 24
+    Width = 94
+    Caption = 'PopulationCount'
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Edit1: TEdit
+    Left = 128
+    Height = 21
+    Top = 24
+    Width = 80
+    TabOrder = 2
+    Text = '111'
+  end
+  object Label2: TLabel
+    Left = 21
+    Height = 13
+    Top = 57
+    Width = 39
+    Caption = 'Label2'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 240
+    Height = 13
+    Top = 24
+    Width = 39
+    Caption = 'Label3'
+    ParentColor = False
+  end
+  object Edit2: TEdit
+    Left = 65
+    Height = 21
+    Top = 56
+    Width = 80
+    TabOrder = 3
+    Text = 'Edit2'
+  end
+  object Edit3: TEdit
+    Left = 312
+    Height = 21
+    Top = 24
+    Width = 80
+    TabOrder = 4
+    Text = 'Edit3'
+  end
+  object Button1: TButton
+    Left = 114
+    Height = 25
+    Top = 576
+    Width = 75
+    Caption = 'Default'
+    TabOrder = 5
+  end
+  object Button2: TButton
+    Left = 201
+    Height = 25
+    Top = 577
+    Width = 75
+    Caption = 'Chart'
+    TabOrder = 6
+  end
+  object Button3: TButton
+    Left = 288
+    Height = 25
+    Top = 577
+    Width = 75
+    Caption = 'Rastrigin'
+    OnClick = TestFunctionRastrigin
+    TabOrder = 7
   end
 end

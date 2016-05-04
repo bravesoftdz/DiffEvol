@@ -6,19 +6,39 @@ interface
 
 uses
   LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms,
-  DiffEvol, Math, {DDSPUtils,} Dialogs, StdCtrls;
+  DiffEvol, Math, {DDSPUtils,} Dialogs, StdCtrls, TestFunctions;
 
 type
+  (* http://wiki.freepascal.org/TAChart_Tutorial:_Getting_started
+  http://www.mathworks.com/matlabcentral/fileexchange/15164-speedyga--a-fast-simple-genetic-algorithm
+  http://pubs.rsc.org/en/content/articlehtml/2015/ja/c4ja00470a
+  *)
+  { TForm1 }
+
   TForm1 = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
     LogBox: TMemo;
     Button: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ButtonClick(Sender: TObject);
+    procedure ButtonClick1(Sender: TObject);
+    procedure ButtonClickSetDefault(Sender: TObject);
+    procedure ButtonClickChart(Sender: TObject);
+    procedure TestFunctionRastrigin(Sender: TObject);
   private
     de         : TDiffEvol;
   public
     function TestFunction(Sender: TObject; const Population :TDiffEvolPopulation):Double;
+    function TestFunction1(Sender: TObject; const Population :TDiffEvolPopulation):Double;
   end;
 
 var
@@ -31,7 +51,29 @@ implementation
 const ORDER = 4;
       Coefficients : Array[0..ORDER] of Double = (2.25, -4.9, 3.58, 0.7, -0.169);
 
+procedure TForm1.TestFunctionRastrigin(Sender: TObject);
+var
+  x: array [1..30] of Double;
+  v: Double;
+begin
+  x[1] := 1.5;
+  LogBox.Lines.Clear;
+  LogBox.Lines.Add('TestFunctionRastrigin');
+  LogBox.Lines.Add('LenX= ' + Inttostr(Length(x)));
+  LogBox.Lines.Add('res= ' + FloattostrF(Rastrigin(x[1]),ffFixed,4,2));
+end;
+
 function TForm1.TestFunction(Sender: TObject; const Population :TDiffEvolPopulation):Double;
+(* Rastrigin Function *)
+var y : Double;
+
+begin
+ assert(Length(Population)=ORDER + 1);
+
+ Result := 0.0;
+end;
+
+function TForm1.TestFunction1(Sender: TObject; const Population :TDiffEvolPopulation):Double;
 var y_Population  : Double;
     y_Reference   : Double;
     i             : Integer;
@@ -64,7 +106,7 @@ begin
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
-var mn,mx : TDiffEvolPopulation;
+var mn, mx : TDiffEvolPopulation;
     i     : Integer;
 begin
  SetLength(mn,ORDER+1);
@@ -83,7 +125,48 @@ begin
  de.Free;
 end;
 
+procedure TForm1.ButtonClickSetDefault(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.ButtonClickChart(Sender: TObject);
+begin
+
+end;
+
+
 procedure TForm1.ButtonClick(Sender: TObject);
+var pass     : Integer;
+    cost     : Double;
+    i        : Integer;
+    error    : Double;
+    best_pop : TDiffEvolPopulation;
+begin
+ LogBox.Lines.Clear;
+
+ // Here, the exact coefficients are found after about 700 iterations
+ for pass:=0 to 700 do
+  begin
+   de.evolve (0, -0.7, 0.7, 1.0, 1.0);
+   Cost:=de.getBestCost;
+   LogBox.Lines.Add('Pass '+Inttostr(Pass)+': '+FloattostrF(Cost,ffFixed,4,1)+' dB');
+  end;
+
+ // Print result
+ LogBox.Lines.Add('Theoric / Found / Error');
+
+ best_pop:=de.getBestPopulation;
+ for i:= 0 to ORDER do
+  begin
+   //error:=f_abs(Coefficients[i]-best_pop[i]);
+   error:=abs(Coefficients[i]-best_pop[i]);
+   LogBox.Lines.Add(FloattostrF(Coefficients[i],ffFixed,4,2)+'     '+
+                    FloattostrF(best_pop[i],ffFixed,4,2)+'     '+
+                    FloattostrF(Error,ffFixed,4,2));
+  end;
+end;
+procedure TForm1.ButtonClick1(Sender: TObject);
 var pass     : Integer;
     cost     : Double;
     i        : Integer;
