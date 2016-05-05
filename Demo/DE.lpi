@@ -43,25 +43,26 @@
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="DEGui.pas"/>
+        <Filename Value="TestFunctions.pp"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="DiffEvol.pas"/>
+        <Filename Value="DiffEvol.pp"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="TestFunctions.pp"/>
+        <Filename Value="DEGui.pp"/>
         <IsPartOfProject Value="True"/>
+        <HasResources Value="True"/>
       </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
     <PathDelim Value="\"/>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+    </SearchPaths>
     <Parsing>
       <SyntaxOptions>
         <SyntaxMode Value="Delphi"/>

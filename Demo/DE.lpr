@@ -3,10 +3,9 @@ program DE;
 {$MODE Delphi}
 
 uses
-  Forms, Interfaces,
-  DEGui in 'DEGui.pas' {Form1};
+  Forms, Interfaces, DEGui;
 
-{$R *.res}
+//{$R *.res}
 
 begin
   Application.Initialize;

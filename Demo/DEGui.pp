@@ -22,9 +22,11 @@ type
     Edit1: TEdit;
     Edit2: TEdit;
     Edit3: TEdit;
+    Edit4: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
     LogBox: TMemo;
     Button: TButton;
     procedure FormCreate(Sender: TObject);
@@ -54,13 +56,21 @@ const ORDER = 4;
 procedure TForm1.TestFunctionRastrigin(Sender: TObject);
 var
   x: array [1..30] of Double;
-  v: Double;
+  i: Integer;
 begin
-  x[1] := 1.5;
   LogBox.Lines.Clear;
   LogBox.Lines.Add('TestFunctionRastrigin');
   LogBox.Lines.Add('LenX= ' + Inttostr(Length(x)));
-  LogBox.Lines.Add('res= ' + FloattostrF(Rastrigin(x[1]),ffFixed,4,2));
+  for i:=1 to Length(x) do
+  begin
+      x[i] := Random;
+      LogBox.Lines.Add('x[' + Inttostr(i) + ']= ' + FloattostrF(x[i],ffFixed,4,2));
+  end;
+  LogBox.Lines.Add('Rastrigin(x)= ' + FloattostrF(Rastrigin(x),ffFixed,4,2));
+  for i:=1 to Length(x) do begin
+      x[i] := 0.0;
+  end;
+  LogBox.Lines.Add('Rastrigin(x=0.0)= ' + FloattostrF(Rastrigin(x),ffFixed,4,2));
 end;
 
 function TForm1.TestFunction(Sender: TObject; const Population :TDiffEvolPopulation):Double;
