@@ -2,26 +2,27 @@ unit DiffEvol;
 
 {$MODE Delphi}
 
-{///////////////////////////////////////////////////////////////////////////////
-        DiffEvol
-        Delphi Port 2005 by Christian-W. Budde
+(* DiffEvol
+   Delphi Port 2005 by Christian-W. Budde
+   http://www.pcjv.de/delphi/
+   Lazarus/FPC port 2016 by tmeits
+   https://github.com/tmeits/DiffEvol
 
-Algorithm by Kenneth Price and Rainer Storn
-http://www.icsi.berkeley.edu/~storn/code.html
+   Algorithm by Kenneth Price and Rainer Storn
+   http://www.icsi.berkeley.edu/~storn/code.html
 
-Based on an implementation by Laurent de Soras & Olli Niemitalo.
+   Based on an implementation by Laurent de Soras & Olli Niemitalo.
 
-This class implements Differential Evolution. It is a genetic algorithm aimed
-to find the best set of values to minimize a "cost" function provided by the
-client. See the D.E. web page for more information.
-///////////////////////////////////////////////////////////////////////////////}
+   This class implements Differential Evolution. It is a genetic algorithm aimed
+   to find the best set of values to minimize a "cost" function provided by the
+   client. See the D.E. web page for more information. *)
 
 interface
 
 type
-  FloatType = Double;
-  TDiffEvolPopulation = array of FloatType;
-  TDiffEvolCostEvent = function(Sender: TObject; const Population :TDiffEvolPopulation):Double of object;
+  FloatType            = Double;
+  TDiffEvolPopulation  = array of FloatType;
+  TDiffEvolCostEvent   = function(Sender: TObject; const Population: TDiffEvolPopulation): Double of object;
 
   TEvaluatedPopulation = class
   public
@@ -60,23 +61,23 @@ implementation
 constructor TEvaluatedPopulation.Create;
 begin
  inherited;
- fCost:=0;
- fValidCostFlag:=false;
+ fCost := 0;
+ fValidCostFlag := false;
 end;
 
 constructor TEvaluatedPopulation.Create(const DiffEvolPopulation: TDiffEvolPopulation; Cost: Double);
 begin
  inherited Create;
- fCost:=Cost;
- fPopulation:=DiffEvolPopulation;
+ fCost := Cost;
+ fPopulation := DiffEvolPopulation;
 end;
 
 constructor TDiffEvol.Create;
 begin
- fBestPopulation:=-1;
+ fBestPopulation := -1;
 end;
 
-{=============================================================================
+(*
 Name: Constructor
 Description:
         Build and initialize the DE object. The min/max array must respect the
@@ -88,22 +89,21 @@ Input parameters:
 	- PopulationCount: Number of populations. Must be >= 5.
 	- min_arr: Array of the minimum values for the initial generation
 	- max_arr: Array of the maximum values for the initial generation
-Throws: exceptions related to memory allocation for vectors
-==============================================================================}
+Throws: exceptions related to memory allocation for vectors *)
 
-constructor TDiffEvol.Create(PopulationCount, VariableCount : Integer; const min_arr, max_arr: TDiffEvolPopulation);
+constructor TDiffEvol.Create(PopulationCount, VariableCount: Integer; const min_arr, max_arr: TDiffEvolPopulation);
 begin
  inherited Create;
  Randomize;
- fPopulationCount:=PopulationCount;
- fVariableCount:=Length(min_arr);
+ fPopulationCount := PopulationCount;
+ fVariableCount := Length(min_arr);
  assert(fPopulationCount >= 5);
  assert(fVariableCount > 0);
  assert(Length(max_arr) = fVariableCount);
  init(min_arr, max_arr, nil);
 end;
 
-{=============================================================================
+(*
 Name: Constructor
 Description:
 	Same things than other above, gives a clue to the DE for the initial best
@@ -113,8 +113,7 @@ Input parameters:
 	- min_arr: Array of the minimum values for the initial generation
 	- max_arr: Array of the maximum values for the initial generation
 	- best_arr: Set of initial values.
-Throws: exceptions related to memory allocation for vectors
-=============================================================================}
+Throws: exceptions related to memory allocation for vectors *)
 
 constructor TDiffEvol.Create(PopulationCount, VariableCount : Integer; const min_arr, max_arr, best_arr: TDiffEvolPopulation);
 begin
@@ -128,7 +127,7 @@ begin
  init(min_arr, max_arr, best_arr);
 end;
 
-{=============================================================================
+(*
 Name: Evolve
 Description:
         Compute the next generation, trying to find a population which cost is
@@ -145,8 +144,7 @@ Input/output parameters:
         - func: Object implementing the cost function. It shall accept populations
         of the size given at the DiffEvol creation.
 Returns: The new best cost.
-Throws: Nothing
-==============================================================================}
+Throws: Nothing *)
 
 function TDiffEvol.Evolve(gain_best, gain_r1, gain_r2, gain_r3, cr: Double): Double;
 var gain_r0              : Double;

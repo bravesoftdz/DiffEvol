@@ -5,7 +5,10 @@ program DE;
 uses
   Forms, Interfaces, DEGui;
 
-//{$R *.res}
+(*  {$R *.res}
+http://wiki.freepascal.org/Lazarus_Resources/ru *)
+
+{$R *.res}
 
 begin
   Application.Initialize;

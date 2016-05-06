@@ -19,6 +19,8 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
     Edit1: TEdit;
     Edit2: TEdit;
     Edit3: TEdit;
@@ -27,8 +29,13 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
+    Label5: TLabel;
     LogBox: TMemo;
     Button: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure ButtonVSClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ButtonClick(Sender: TObject);
@@ -37,10 +44,10 @@ type
     procedure ButtonClickChart(Sender: TObject);
     procedure TestFunctionRastrigin(Sender: TObject);
   private
-    de         : TDiffEvol;
+    de: TDiffEvol;
   public
     function TestFunction(Sender: TObject; const Population :TDiffEvolPopulation):Double;
-    function TestFunction1(Sender: TObject; const Population :TDiffEvolPopulation):Double;
+    function TestDiffEvolFunctionRastrigin(Sender: TObject; const Population :TDiffEvolPopulation):Double;
   end;
 
 var
@@ -53,37 +60,79 @@ implementation
 const ORDER = 4;
       Coefficients : Array[0..ORDER] of Double = (2.25, -4.9, 3.58, 0.7, -0.169);
 
-procedure TForm1.TestFunctionRastrigin(Sender: TObject);
+procedure TForm1.TestFunctionRastrigin(Sender: TObject);  (* call on click button Start Rastrigin*)
+const
+  VS_ORDER = 1;
+  PASS_COUNT = 700; (* Лучше брать с формы *)
+  POP_COUNT = 700;
+  MM = 100;
 var
-  x: array [1..30] of Double;
-  i: Integer;
+  rde: TDiffEvol;
+  mn, mx, x: TDiffEvolPopulation;
+  pass, i, m: Integer;
+  Cost, error: Double;
+  best_pop: TDiffEvolPopulation;
 begin
   LogBox.Lines.Clear;
   LogBox.Lines.Add('TestFunctionRastrigin');
-  LogBox.Lines.Add('LenX= ' + Inttostr(Length(x)));
-  for i:=1 to Length(x) do
-  begin
+  LogBox.Lines.Add('LenX= ' + Inttostr(Length(x)+1));
+  (* Test Function *)
+  SetLength(x, VS_ORDER);
+  for i:=0 to Length(x) - 1 do begin
       x[i] := Random;
       LogBox.Lines.Add('x[' + Inttostr(i) + ']= ' + FloattostrF(x[i],ffFixed,4,2));
   end;
   LogBox.Lines.Add('Rastrigin(x)= ' + FloattostrF(Rastrigin(x),ffFixed,4,2));
-  for i:=1 to Length(x) do begin
+  for i:=0 to Length(x) - 1 do begin
       x[i] := 0.0;
   end;
   LogBox.Lines.Add('Rastrigin(x=0.0)= ' + FloattostrF(Rastrigin(x),ffFixed,4,2));
+  LogBox.Lines.Add('TestDiffEvolFunctionRastrigin');
+  (* Create *)
+  SetLength(mn, VS_ORDER);
+  SetLength(mx, VS_ORDER);
+  for i:=0 to VS_ORDER - 1 do begin
+    mn[i]:= -5.7;
+    mx[i]:=  5.7;
+  end;
+  rde:=TDiffEvol.Create(POP_COUNT, VS_ORDER, mn, mx);
+  rde.OnCalcCosts:=TestDiffEvolFunctionRastrigin; (* fitness function *)
+  (* Here, the exact coefficients are found after about N iterations *)
+  m := 0;
+  for pass:=0 to PASS_COUNT do begin
+    rde.evolve (0, -0.7, 0.7, 1.0, 1.0);
+    Cost := rde.getBestCost;
+    if m >= MM then begin
+       LogBox.Lines.Add('Pass ' + Inttostr(Pass) + ': ' + FloattostrF(Cost, ffFixed, 6, 2));
+       m := 0;
+       end
+    else m := m + 1;
+  end;
+  (* Print result *)
+  LogBox.Lines.Add('Theoric / Found / Error');
+  best_pop:=rde.getBestPopulation;
+  for i:= 0 to VS_ORDER - 1 do begin
+    error:=abs(0.0  - best_pop[i]);
+    LogBox.Lines.Add(FloattostrF(0.0,ffFixed,6,2)+'     '+
+                    FloattostrF(best_pop[i],ffFixed,6,2)+'     '+
+                    FloattostrF(Error,ffFixed,6,2));
+  end;
+  LogBox.Lines.Add('******************************');
+  LogBox.Lines.Add(FloattostrF(Rastrigin(x),ffFixed,6,2)+'     '+
+                    FloattostrF(RAstrigin(best_pop),ffFixed,6,2)+'     '+
+                    FloattostrF(Rastrigin(x) - RAstrigin(best_pop),ffFixed,6,2));
+  rde.Free;
+  mn := nil; mx := nil; x := nil;
+end;
+
+function TForm1.TestDiffEvolFunctionRastrigin(Sender: TObject; const Population :TDiffEvolPopulation):Double;
+(* Rastrigin Function *)
+begin
+
+  Result := Rastrigin(Population);
 end;
 
 function TForm1.TestFunction(Sender: TObject; const Population :TDiffEvolPopulation):Double;
-(* Rastrigin Function *)
-var y : Double;
-
-begin
- assert(Length(Population)=ORDER + 1);
-
- Result := 0.0;
-end;
-
-function TForm1.TestFunction1(Sender: TObject; const Population :TDiffEvolPopulation):Double;
 var y_Population  : Double;
     y_Reference   : Double;
     i             : Integer;
@@ -117,17 +166,37 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var mn, mx : TDiffEvolPopulation;
-    i     : Integer;
+    i      : Integer;
 begin
  SetLength(mn,ORDER+1);
  SetLength(mx,ORDER+1);
  for i:=0 to ORDER do
   begin
-   mn[i]:=-100;
-   mx[i]:= 100;
+   mn[i]:=-1000;
+   mx[i]:= 1000;
   end;
  de:=TDiffEvol.Create(100,ORDER+1,mn,mx);
  de.OnCalcCosts:=TestFunction;
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+begin
+  Halt(0);
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.ButtonVSClick(Sender: TObject);
+begin
+
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
