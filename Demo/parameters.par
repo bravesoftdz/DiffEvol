@@ -1,0 +1,110 @@
+File of parameters
+
+A
+PARAMETERS   FORMAT
+7.0000  1 T1   - min temperature for growth             
+12.0000  2 T2   - growth rate is max in the range T2-T3  
+21.0000  3 T3   -                                        
+30.0000  4 T4   - max temperature for growth             
+0.7000   5 Wmax - max soil moisture (field capacity)    
+0.0000  6      - * the temperature changes T+b6         
+90.0000  7 Tm   - sum of temperature for start soil melti
+2.0000  8 а1   - coefficient of soil melting
+0.0145  9 а2   -         -"-
+0.0500 10 Wo   - initial soil moisture                  
+40.0000 11 Рmax - max rate of infiltration water into soi
+0.1000 12 Wmin - min soil moisture (wilting point)      
+300.0000 13 lr   - the root depth                         
+0.0375 14 К2   - coefficient for calculation the transpi
+0.1300 15 К3   -            -"-
+0.6000 16 К1   - (1-p16) is the interception precip.by c
+0.0950 17 W1   - min soil moisture for growth           
+0.2500 18 W2   - the growth arte is max in range W2-W3
+0.5500 19 W3   -            -"-
+0.0900 20 W4   - growth is stoped at this soil mois     
+0.0050 21 Кd   - the rate of drenage water from soil
+95.0000 22 Tg   - sum of temperature to start growth     
+7.9000 23 Sno  - initial snowpack                       
+1.0000 24      - the rate of snow melting               
+-2.0000 25      - min temperature snow melting
+1.0000  26      - TEMPERATURE CORRECTION ON ELEVATION
+0.0000  27      -       -"-
+1.0000  28      - PRECIPITATION
+0.0000  29      -       -"-
+0.5000  30      - delta for parameter
+1.0000   
+INTEGER ARRAY K(20)
+0   1 - soil melting  (1), no (0)
+1   2 -
+1   3 - with pause each 5 yaers (1), no (0)
+0   4 - snow melting (1), no (0)
+0   5 -
+1   6 -
+125   7 - is changed by program
+50   8 - Maximum duration (days) of latewood formati
+10   9 - the period of sum temp. to start growth
+10  10 - the period of sum temp. to start soil melti
+153  11 - is changed by program
+272  12 - is changed by program
+0  13 - Options CSCALC 0-4, no calculation (5)
+0  14 -
+0  15 - Period of cell enlargement after last divis
+0  16 - is changed by program
+0  17 - is changed by program
+1  18 - the number of parameter which is changed
+1  19 - the number of itterations
+50 20 -the skale win 5
+
+0.00                          1 - The testing growth rate -1 or con
+1.00                          2 - To open output file of cellular p
+0.00                          3 - To open output file of cellular d
+0.00                          4 - Not used
+30.00                          5 - Vp 
+2.00                          6 - Vp
+0.00                          7 - Vp
+30.00                          8 - Not used
+0.00                          9 - This parameter is changed by prog
+0.00                         10 - This parameter is changed by prog
+
+0.03                          1 - Vcr is the critical g
+0.01                           2 - Not used
+0.00                           3 - If k1=2 Growth rate 
+0.80                          4 - is the correction of 
+1.00                          5 - is the correction of 
+0.10                          6 - b6 - Vo(j)=b6*J+b7
+0.20                          7 - b7 and b6 determinate
+0.10                         8 - b8  Vmin(j)=B9*EXP(j*B
+0.01                         9 - b8 and b9 determinate 
+1.00                         10 - is the growth rate in
+8.00                         11 - DG1 is the max size i
+9.00                         12 - Ds                   
+9.50                         13 - DG2                  
+10.00                         14 - Dm                   
+1.00                         15 - is the time step in c
+30.00                         16 - Vo
+0.00                         17 - Not used
+0.00                         18 - Vo
+85.00                         19 - is the  max period wi
+20.00                         20 - is the мах number cel
+Real array ps(10)
+3.00  1 -                p1+p2*LOG(N/p3)
+1.56 2 -
+3.00  3 -
+0.00  4 -
+40.00  5 - 
+0.25 6 - CWT=p6* D
+40.00  7 - average cell size
+0.00  8 -
+4.00  9 - 
+1.00 10 - 
+integer arrey ks(10)
+10
+ 0
+ 0
+ 0 
+ 0 
+ 0 
+ 0 
+ 0  
+ 0
+ 0 

@@ -1,12 +1,15 @@
 unit DEGui;
 
 {$MODE Delphi}
+//{$mode objfpc}{$H+}
+{$RANGECHECKS ON}
+{$DEBUGINFO ON}
 
 interface
 
 uses
-  LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms,
-  DiffEvol, Math, {DDSPUtils,} Dialogs, StdCtrls, TestFunctions;
+  LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls,
+  Forms, DiffEvol, Math, Dialogs, StdCtrls, Buttons, ExtCtrls, TestFunctions;
 
 type
   (* http://wiki.freepascal.org/TAChart_Tutorial:_Getting_started
@@ -16,22 +19,28 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
-    Button5: TButton;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BeginYear: TLabeledEdit;
+    CheckBox1: TCheckBox;
+    SizeTracheids: TLabeledEdit; (* индекс прироста, соответствующий данным измерений размеров трахеид *)
+    PlotResult: TCheckBox;
+    EndYear: TLabeledEdit;
+    SoilMelting: TCheckBox;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    GroupBox3: TGroupBox;
+    Chronology: TLabeledEdit;
+    Latitude: TLabeledEdit;
+    ClimaticData: TLabeledEdit;
+    PopulationCount: TLabeledEdit;
+    VariableCount: TLabeledEdit;
+    Generation: TLabeledEdit;
+    MSE: TLabeledEdit;
     LogBox: TMemo;
-    Button: TButton;
+    procedure BitBtn1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
@@ -40,14 +49,12 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure ButtonClick(Sender: TObject);
     procedure ButtonClick1(Sender: TObject);
-    procedure ButtonClickSetDefault(Sender: TObject);
-    procedure ButtonClickChart(Sender: TObject);
     procedure TestFunctionRastrigin(Sender: TObject);
   private
     de: TDiffEvol;
   public
-    function TestFunction(Sender: TObject; const Population :TDiffEvolPopulation):Double;
-    function TestDiffEvolFunctionRastrigin(Sender: TObject; const Population :TDiffEvolPopulation):Double;
+    function TestFunction(Sender: TObject; const Population :TDiffEvolPopulation): Double;
+    function TestDiffEvolFunctionRastrigin(Sender: TObject; const Population :TDiffEvolPopulation): Double;
   end;
 
 var
@@ -62,9 +69,6 @@ const ORDER = 4;
 
 procedure TForm1.TestFunctionRastrigin(Sender: TObject);  (* call on click button Start Rastrigin*)
 const
-  VS_ORDER = 1;
-  PASS_COUNT = 700; (* Лучше брать с формы *)
-  POP_COUNT = 700;
   MM = 100;
 var
   rde: TDiffEvol;
@@ -72,12 +76,20 @@ var
   pass, i, m: Integer;
   Cost, error: Double;
   best_pop: TDiffEvolPopulation;
+   (* Берем с формы *)
+  VS_ORDER, PASS_COUNT, POP_COUNT: Integer;
+  VS_MSE: Double;
 begin
+  VS_ORDER := StrToInt(VariableCount.Text);
+  POP_COUNT := StrToInt(PopulationCount.Text);
+  PASS_COUNT := StrToInt(Generation.Text);
+  VS_MSE := StrToFloat(MSE.Text);
+
   LogBox.Lines.Clear;
   LogBox.Lines.Add('TestFunctionRastrigin');
-  LogBox.Lines.Add('LenX= ' + Inttostr(Length(x)+1));
   (* Test Function *)
   SetLength(x, VS_ORDER);
+  LogBox.Lines.Add('Order= ' + Inttostr(Length(x)));
   for i:=0 to Length(x) - 1 do begin
       x[i] := Random;
       LogBox.Lines.Add('x[' + Inttostr(i) + ']= ' + FloattostrF(x[i],ffFixed,4,2));
@@ -91,12 +103,13 @@ begin
   (* Create *)
   SetLength(mn, VS_ORDER);
   SetLength(mx, VS_ORDER);
-  for i:=0 to VS_ORDER - 1 do begin
+  for i := 0 to VS_ORDER - 1 do begin
     mn[i]:= -5.7;
     mx[i]:=  5.7;
   end;
   rde:=TDiffEvol.Create(POP_COUNT, VS_ORDER, mn, mx);
-  rde.OnCalcCosts:=TestDiffEvolFunctionRastrigin; (* fitness function *)
+  (* *)
+  rde.OnCalcCosts := Form1.TestDiffEvolFunctionRastrigin(); (* fitness function *)
   (* Here, the exact coefficients are found after about N iterations *)
   m := 0;
   for pass:=0 to PASS_COUNT do begin
@@ -128,7 +141,6 @@ end;
 function TForm1.TestDiffEvolFunctionRastrigin(Sender: TObject; const Population :TDiffEvolPopulation):Double;
 (* Rastrigin Function *)
 begin
-
   Result := Rastrigin(Population);
 end;
 
@@ -194,6 +206,11 @@ begin
 
 end;
 
+procedure TForm1.BitBtn1Click(Sender: TObject);
+begin
+  Halt(0);
+end;
+
 procedure TForm1.ButtonVSClick(Sender: TObject);
 begin
 
@@ -203,17 +220,6 @@ procedure TForm1.FormDestroy(Sender: TObject);
 begin
  de.Free;
 end;
-
-procedure TForm1.ButtonClickSetDefault(Sender: TObject);
-begin
-
-end;
-
-procedure TForm1.ButtonClickChart(Sender: TObject);
-begin
-
-end;
-
 
 procedure TForm1.ButtonClick(Sender: TObject);
 var pass     : Integer;

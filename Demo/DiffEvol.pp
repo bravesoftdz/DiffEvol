@@ -1,6 +1,9 @@
 unit DiffEvol;
 
-{$MODE Delphi}
+(* {$MODE Delphi} *)
+{$mode objfpc}{$H+}
+{$RANGECHECKS ON}
+{$DEBUGINFO ON}
 
 (* DiffEvol
    Delphi Port 2005 by Christian-W. Budde
@@ -12,6 +15,8 @@ unit DiffEvol;
    http://www.icsi.berkeley.edu/~storn/code.html
 
    Based on an implementation by Laurent de Soras & Olli Niemitalo.
+   http://yehar.com/blog/
+   http://yehar.com/blog/?p=643
 
    This class implements Differential Evolution. It is a genetic algorithm aimed
    to find the best set of values to minimize a "cost" function provided by the
@@ -22,7 +27,7 @@ interface
 type
   FloatType            = Double;
   TDiffEvolPopulation  = array of FloatType;
-  TDiffEvolCostEvent   = function(Sender: TObject; const Population: TDiffEvolPopulation): Double of object;
+  TDiffEvolCostEvent   = function (Sender: TObject; const Population: TDiffEvolPopulation): Double of object;
 
   TEvaluatedPopulation = class
   public
@@ -35,9 +40,9 @@ type
 
   TDiffEvol = class
   private
-    fPopulationCount    : Integer; // Number of populations
-    fVariableCount      : Integer; // Number of variables in population
-    fBestPopulation     : Integer; // Negative if not yet determinated
+    fPopulationCount    : Integer; (* Number of populations *)
+    fVariableCount      : Integer; (* Number of variables in population *)
+    fBestPopulation     : Integer; (* Negative if not yet determinated *)
     fCurrentGeneration  : array of TEvaluatedPopulation;
     fNextGeneration     : array of TEvaluatedPopulation;
     constructor Create; overload;
@@ -165,7 +170,7 @@ begin
 
  for pop:=0 to fPopulationCount-1 do
   begin
-   // Find 3 different populations randomly
+   (* Find 3 different populations randomly *)
    repeat
     r1:=random(fPopulationCount);
    until (r1 <> pop) and (r1 <> fBestPopulation);
@@ -178,7 +183,7 @@ begin
     r3:=random(fPopulationCount);
    until (r3 <> pop) and (r3 <> fBestPopulation) and (r3 <> r2) and (r3 <> r1);
 
-   // Generate trial vector with crossing-over
+   (* Generate trial vector with crossing-over *)
    fvar:=random(fVariableCount);
    fvar_cnt:=0;
 
@@ -204,7 +209,7 @@ begin
      Inc(fvar_cnt);
     end;
 
-   // Evaluate the new population
+   (* Evaluate the new population *)
    fNextGeneration[pop].fCost:=fOnCalcCosts(self, fNextGeneration[pop].fPopulation);
    fNextGeneration[pop].fValidCostFlag:=true;
 
@@ -212,7 +217,7 @@ begin
     then
      begin
       if (fNextGeneration[pop].fCost < new_best_Cost) then
-       begin // New best
+       begin (* New best *)
         new_BestPopulation:=pop;
         new_best_Cost:=fNextGeneration[pop].fCost;
        end;
@@ -270,7 +275,7 @@ end;
 procedure TDiffEvol.Init(const min_arr, max_arr, best_arr: TDiffEvolPopulation);
 var i,pop : Integer;
 begin
- // Size all the arrays
+ (* Size all the arrays *)
  SetLength(fCurrentGeneration,fPopulationCount);
  SetLength(fNextGeneration,fPopulationCount);
  for pop:=0 to fPopulationCount-1 do
@@ -281,10 +286,10 @@ begin
    SetLength(fNextGeneration[pop].fPopulation,fVariableCount);
   end;
 
- // Initialize populations with random values
+ (* Initialize populations with random values *)
  RandomizePopulationulation(min_arr, max_arr);
 
- // Introduce the "best" population if it is provided
+ (* Introduce the "best" population if it is provided *)
  if assigned(best_arr) then
   begin
    for i:=0 to fVariableCount-1 do fCurrentGeneration[0].fPopulation[i]:=best_arr[i];
@@ -312,7 +317,7 @@ begin
  fBestPopulation:=-1;
 end;
 
-function TDiffEvol.FindBest;
+function TDiffEvol.FindBest: Double;
 var best_Cost : double;
     cur_Cost  : Double;
     pop       : Integer;

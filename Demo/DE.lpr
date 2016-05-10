@@ -1,7 +1,7 @@
 program DE;
 
-{$MODE Delphi}
-
+//{$MODE Delphi}
+{$mode objfpc}{$H+}
 uses
   Forms, Interfaces, DEGui;
 

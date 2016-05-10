@@ -1,6 +1,9 @@
 unit TestFunctions;
 
-{$mode delphi}
+{$MODE Delphi}
+//{$mode objfpc}{$H+}
+{$RANGECHECKS ON}
+{$DEBUGINFO ON}
 
 interface
 
@@ -27,5 +30,9 @@ begin
   Rastrigin := A*n + sum;
 end;
 
+function TryDecimalStrToInt( const S: string; out Value: Integer): Boolean;
+begin
+   result := ( pos( '$', S ) = 0 ) and TryStrToInt( S, Value );
+end;
 end.
 
