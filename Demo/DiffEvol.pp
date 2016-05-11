@@ -183,12 +183,13 @@ Returns: The new best cost.
 Throws: Nothing *)
 
 function TDiffEvol.Evolve(gain_best, gain_r1, gain_r2, gain_r3, cr: Double): Double;
-var gain_r0              : Double;
-    new_BestPopulation   : Integer;
-    new_best_Cost        : Double;
-    r1,r2,r3,pop,i       : Integer;
-    fr                   : Double;
-    fvar,fvar_cnt        : Integer;
+var
+    gain_r0           : Double;
+    new_BestPopulation: Integer;
+    new_best_Cost     : Double;
+    r1,r2,r3,pop,i    : Integer;
+    fr                : Double;
+    fvar,fvar_cnt     : Integer;
 begin
  assert (cr >= 0);
  assert (cr <= 1);

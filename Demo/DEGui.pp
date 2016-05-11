@@ -9,7 +9,8 @@ interface
 
 uses
   LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls,
-  Forms, DiffEvol, Math, Dialogs, StdCtrls, Buttons, ExtCtrls, TestFunctions;
+  Forms, DiffEvol, Math, Dialogs, StdCtrls, Buttons, ExtCtrls, CheckLst,
+  ComCtrls, TestFunctions, VSModel;
 
 type
   (* http://wiki.freepascal.org/TAChart_Tutorial:_Getting_started
@@ -22,9 +23,21 @@ type
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
     BeginYear: TLabeledEdit;
-    CheckBox1: TCheckBox;
+    BitBtn4: TBitBtn;
+    EachResult: TComboBox;
+    EditGainR3: TEdit;
+    EditGainR2: TEdit;
+    EditGainR1: TEdit;
+    EditGainB: TEdit;
+    LabelGainR3: TLabel;
+    LabelGainR2: TLabel;
+    LabelGainR1: TLabel;
+    LabelGainB: TLabel;
+    LabelEachResult: TLabel;
+    CrossingOver: TLabeledEdit;
+    WriteResult: TCheckBox;
+    InitialValues: TCheckBox;
     SizeTracheids: TLabeledEdit; (* индекс прироста, соответствующий данным измерений размеров трахеид *)
     PlotResult: TCheckBox;
     EndYear: TLabeledEdit;
@@ -49,6 +62,8 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure ButtonClick(Sender: TObject);
     procedure ButtonClick1(Sender: TObject);
+    procedure InitialValuesClick(Sender: TObject);
+    procedure PlotResultClick(Sender: TObject);
     procedure TestFunctionRastrigin(Sender: TObject);
   private
     de: TDiffEvol;
@@ -76,15 +91,18 @@ var
   pass, i, m: Integer;
   Cost, error: Double;
   best_pop: TDiffEvolPopulation;
-   (* Берем с формы *)
+
   VS_ORDER, PASS_COUNT, POP_COUNT: Integer;
-  VS_MSE: Double;
+  VS_MSE, GAIN_BEST, GAIN_R1, GAIN_R2, GAIN_R3, CR: Double;
+
 
 begin
+  (* Get Form *)
   VS_ORDER := StrToInt(VariableCount.Text);
   POP_COUNT := StrToInt(PopulationCount.Text);
   PASS_COUNT := StrToInt(Generation.Text);
   VS_MSE := StrToFloat(MSE.Text);
+  GAIN_BEST := StrToFloat(EditGainB.Text);
 
   LogBox.Lines.Clear;
   LogBox.Lines.Add('TestFunctionRastrigin');
@@ -115,7 +133,7 @@ begin
   (* Here, the exact coefficients are found after about N iterations *)
   m := 0;
   for pass:=0 to PASS_COUNT do begin
-    rde.evolve (0, -0.7, 0.7, 1.0, 1.0);
+    rde.evolve (GAIN_BEST, -0.7, 0.7, 1.0, 1.0);
     Cost := rde.getBestCost;
     if m >= MM then begin
        LogBox.Lines.Add('Pass ' + Inttostr(Pass) + ': ' + FloattostrF(Cost, ffFixed, 6, 2));
@@ -285,6 +303,17 @@ begin
                     FloattostrF(best_pop[i],ffFixed,4,2)+'     '+
                     FloattostrF(Error,ffFixed,4,2));
   end;
+end;
+
+procedure TForm1.InitialValuesClick(Sender: TObject);
+begin
+  (* set boolean flag and wrir logbox values *)
+end;
+
+procedure TForm1.PlotResultClick(Sender: TObject);
+begin
+  (* Plot .CRN and evalCRN *)
+
 end;
 
 end.
