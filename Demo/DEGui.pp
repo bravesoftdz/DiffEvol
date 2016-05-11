@@ -1,7 +1,7 @@
 unit DEGui;
 
-{$MODE Delphi}
-//{$mode objfpc}{$H+}
+//{$MODE Delphi}
+{$mode objfpc}{$H+}
 {$RANGECHECKS ON}
 {$DEBUGINFO ON}
 
@@ -53,8 +53,8 @@ type
   private
     de: TDiffEvol;
   public
-    function TestFunction(Sender: TObject; const Population :TDiffEvolPopulation): Double;
-    function TestDiffEvolFunctionRastrigin(Sender: TObject; const Population :TDiffEvolPopulation): Double;
+    function TestFunction(Sender: TObject; const Population: TDiffEvolPopulation): Double;
+    function TestDiffEvolFunctionRastrigin(Sender: TObject; const Population: TDiffEvolPopulation): Double;
   end;
 
 var
@@ -79,6 +79,7 @@ var
    (* Берем с формы *)
   VS_ORDER, PASS_COUNT, POP_COUNT: Integer;
   VS_MSE: Double;
+
 begin
   VS_ORDER := StrToInt(VariableCount.Text);
   POP_COUNT := StrToInt(PopulationCount.Text);
@@ -100,6 +101,7 @@ begin
   end;
   LogBox.Lines.Add('Rastrigin(x=0.0)= ' + FloattostrF(Rastrigin(x),ffFixed,4,2));
   LogBox.Lines.Add('TestDiffEvolFunctionRastrigin');
+
   (* Create *)
   SetLength(mn, VS_ORDER);
   SetLength(mx, VS_ORDER);
@@ -107,9 +109,9 @@ begin
     mn[i]:= -5.7;
     mx[i]:=  5.7;
   end;
-  rde:=TDiffEvol.Create(POP_COUNT, VS_ORDER, mn, mx);
+  rde:=TDiffEvol.Create(POP_COUNT, VS_ORDER, mn, mx, @TestDiffEvolFunctionRastrigin);
   (* *)
-  rde.OnCalcCosts := Form1.TestDiffEvolFunctionRastrigin(); (* fitness function *)
+  //rde.OnCalcCosts := Form1.TestDiffEvolFunctionRastrigin; (* set fitness function *)
   (* Here, the exact coefficients are found after about N iterations *)
   m := 0;
   for pass:=0 to PASS_COUNT do begin
@@ -188,7 +190,10 @@ begin
    mx[i]:= 1000;
   end;
  de:=TDiffEvol.Create(100,ORDER+1,mn,mx);
- de.OnCalcCosts:=TestFunction;
+ (* http://forum.lazarus.freepascal.org/index.php/topic,30880.msg196840.html#msg196840*)
+ (* use {$mode delphi}
+ de.OnCalcCosts:=TestFunction;  *)
+ de.OnCalcCosts:=@TestFunction;
 end;
 
 procedure TForm1.Button4Click(Sender: TObject);

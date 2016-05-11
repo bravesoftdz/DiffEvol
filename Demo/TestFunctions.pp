@@ -1,7 +1,7 @@
 unit TestFunctions;
 
-{$MODE Delphi}
-//{$mode objfpc}{$H+}
+//{$MODE Delphi}
+{$mode objfpc}{$H+}
 {$RANGECHECKS ON}
 {$DEBUGINFO ON}
 

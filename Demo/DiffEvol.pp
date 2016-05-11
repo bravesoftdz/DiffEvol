@@ -54,6 +54,8 @@ type
   public
     constructor Create(PopulationCount, VariableCount : Integer; const min_arr, max_arr: TDiffEvolPopulation); overload;
     constructor Create(PopulationCount, VariableCount : Integer; const min_arr, max_arr, best_arr: TDiffEvolPopulation); overload;
+    constructor Create(PopulationCount, VariableCount : Integer;
+      const min_arr, max_arr: TDiffEvolPopulation; ff: TDiffEvolCostEvent); overload;
     destructor Destroy; override;
     function Evolve(gain_best, gain_r1, gain_r2, gain_r3, cr: Double): Double;
     function getBestPopulation: TDiffEvolPopulation;
@@ -130,6 +132,35 @@ begin
  assert(Length(max_arr) = fVariableCount);
  assert(Length(min_arr) = fVariableCount);
  init(min_arr, max_arr, best_arr);
+end;
+
+(*
+Name: Constructor
+Description:
+        Build and initialize the DE object. The min/max array must respect the
+	following requirements:
+	- Both arrays should have the same length, > 0
+	- For every i, min [i] <= max [i]
+	- The length of these arrays sets the number of parameters per population.
+Input parameters:
+	- PopulationCount: Number of populations. Must be >= 5.
+	- min_arr: Array of the minimum values for the initial generation
+	- max_arr: Array of the maximum values for the initial generation
+        - ff: Fitness function (cost)
+Throws: exceptions related to memory allocation for vectors *)
+
+constructor TDiffEvol.Create(PopulationCount, VariableCount: Integer;
+  const min_arr, max_arr: TDiffEvolPopulation; ff: TDiffEvolCostEvent);
+begin
+ inherited Create;
+ Randomize;
+ fPopulationCount := PopulationCount;
+ fVariableCount := Length(min_arr);
+ assert(fPopulationCount >= 5);
+ assert(fVariableCount > 0);
+ assert(Length(max_arr) = fVariableCount);
+ fOnCalcCosts := ff;
+ init(min_arr, max_arr, nil);
 end;
 
 (*
