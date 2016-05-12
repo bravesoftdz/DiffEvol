@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="5">
+    <Units Count="7">
       <Unit0>
         <Filename Value="DE.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -26,8 +26,8 @@
         <Filename Value="DiffEvol.pp"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="188"/>
-        <CursorPos X="13" Y="207"/>
+        <TopLine Value="13"/>
+        <CursorPos X="33" Y="28"/>
         <UsageCount Value="258"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -40,14 +40,13 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="93"/>
-        <CursorPos X="36" Y="105"/>
+        <TopLine Value="226"/>
+        <CursorPos X="75" Y="243"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
-          <IsVisibleTab Value="True"/>
           <WindowIndex Value="1"/>
-          <TopLine Value="247"/>
-          <CursorPos X="85" Y="263"/>
+          <TopLine Value="252"/>
+          <CursorPos X="85" Y="268"/>
         </ExtraEditor1>
         <UsageCount Value="258"/>
         <Loaded Value="True"/>
@@ -59,131 +58,150 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="VSModel"/>
         <EditorIndex Value="2"/>
-        <CursorPos Y="7"/>
-        <UsageCount Value="27"/>
+        <TopLine Value="1490"/>
+        <CursorPos X="2" Y="1501"/>
+        <UsageCount Value="72"/>
         <Loaded Value="True"/>
       </Unit4>
+      <Unit5>
+        <Filename Value="mainunit.pas"/>
+        <UnitName Value="Mainunit"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="1"/>
+        <TopLine Value="2339"/>
+        <CursorPos X="18" Y="2347"/>
+        <UsageCount Value="32"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="C:\lazarus\lcl\include\winapih.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="183"/>
+        <CursorPos X="10" Y="196"/>
+        <UsageCount Value="10"/>
+      </Unit6>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="297" Column="48" TopLine="280"/>
+        <Caret Line="108" Column="9" TopLine="87"/>
       </Position1>
       <Position2>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="296" Column="48" TopLine="279"/>
+        <Caret Line="111" Column="9" TopLine="90"/>
       </Position2>
       <Position3>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="297" Column="48" TopLine="280"/>
+        <Caret Line="114" Column="13" TopLine="93"/>
       </Position3>
       <Position4>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="298" Column="48" TopLine="281"/>
+        <Caret Line="116" Column="9" TopLine="95"/>
       </Position4>
       <Position5>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="299" Column="48" TopLine="282"/>
+        <Caret Line="120" Column="9" TopLine="99"/>
       </Position5>
       <Position6>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="300" Column="48" TopLine="283"/>
+        <Caret Line="121" Column="9" TopLine="100"/>
       </Position6>
       <Position7>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="301" Column="48" TopLine="284"/>
+        <Caret Line="139" Column="14" TopLine="118"/>
       </Position7>
       <Position8>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="302" Column="48" TopLine="285"/>
+        <Caret Line="145" Column="9" TopLine="124"/>
       </Position8>
       <Position9>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="303" Column="48" TopLine="286"/>
+        <Caret Line="149" Column="11" TopLine="128"/>
       </Position9>
       <Position10>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="304" Column="48" TopLine="287"/>
+        <Caret Line="153" Column="9" TopLine="132"/>
       </Position10>
       <Position11>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="303" Column="48" TopLine="286"/>
+        <Caret Line="154" Column="9" TopLine="133"/>
       </Position11>
       <Position12>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="302" Column="48" TopLine="285"/>
+        <Caret Line="254" Column="8" TopLine="232"/>
       </Position12>
       <Position13>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="301" Column="48" TopLine="284"/>
+        <Caret Line="261" Column="10" TopLine="239"/>
       </Position13>
       <Position14>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="300" Column="48" TopLine="283"/>
+        <Caret Line="265" Column="8" TopLine="243"/>
       </Position14>
       <Position15>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="301" Column="48" TopLine="284"/>
+        <Caret Line="272" Column="10" TopLine="251"/>
       </Position15>
       <Position16>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="300" Column="48" TopLine="283"/>
+        <Caret Line="284" Column="8" TopLine="262"/>
       </Position16>
       <Position17>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="301" Column="48" TopLine="284"/>
+        <Caret Line="291" Column="10" TopLine="269"/>
       </Position17>
       <Position18>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="300" Column="48" TopLine="283"/>
+        <Caret Line="295" Column="8" TopLine="273"/>
       </Position18>
       <Position19>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="299" Column="48" TopLine="243"/>
+        <Caret Line="302" Column="10" TopLine="281"/>
       </Position19>
       <Position20>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="300" Column="48" TopLine="274"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="335" Column="11" TopLine="280"/>
       </Position20>
       <Position21>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="299" Column="48" TopLine="273"/>
+        <Filename Value="vsmodel.pp"/>
+        <Caret Line="361" TopLine="335"/>
       </Position21>
       <Position22>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="300" Column="48" TopLine="274"/>
+        <Filename Value="vsmodel.pp"/>
+        <Caret Line="16" Column="12" TopLine="46"/>
       </Position22>
       <Position23>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="301" Column="48" TopLine="275"/>
+        <Filename Value="vsmodel.pp"/>
+        <Caret Line="537" Column="32" TopLine="522"/>
       </Position23>
       <Position24>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="100" Column="36" TopLine="89"/>
+        <Filename Value="vsmodel.pp"/>
+        <Caret Line="1935" Column="11" TopLine="1911"/>
       </Position24>
       <Position25>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="99" Column="36" TopLine="88"/>
+        <Filename Value="vsmodel.pp"/>
+        <Caret Line="1499" Column="50" TopLine="1460"/>
       </Position25>
       <Position26>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="100" Column="36" TopLine="89"/>
+        <Filename Value="vsmodel.pp"/>
+        <Caret Line="1500" Column="2" TopLine="1487"/>
       </Position26>
       <Position27>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="101" Column="36" TopLine="104"/>
+        <Filename Value="vsmodel.pp"/>
+        <Caret Line="1502" Column="12" TopLine="1481"/>
       </Position27>
       <Position28>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="102" Column="36" TopLine="102"/>
+        <Filename Value="vsmodel.pp"/>
+        <Caret Line="1503" Column="26" TopLine="1490"/>
       </Position28>
       <Position29>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="103" Column="36" TopLine="117"/>
+        <Caret Line="243" Column="5" TopLine="230"/>
       </Position29>
       <Position30>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="104" Column="36" TopLine="104"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="2348" Column="106" TopLine="2344"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

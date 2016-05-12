@@ -212,6 +212,10 @@ begin
  (* use {$mode delphi}
  de.OnCalcCosts:=TestFunction;  *)
  de.OnCalcCosts:=@TestFunction;
+
+ LogBox.Lines.Clear;
+ LogBox.Lines.Add('The search of optimal parameters for models');
+ LogBox.Lines.Add('of formation of annual rings of coniferous Vaganov-Shashkin V6 9.5.16');
 end;
 
 procedure TForm1.Button4Click(Sender: TObject);
@@ -236,7 +240,8 @@ end;
 
 procedure TForm1.ButtonVSClick(Sender: TObject);
 begin
-
+  Application.MessageBox(PChar('В процессе разработки....'), 'Внимание',0);
+  //Application.MessageBox(PChar('In the process of developing....'), 'Внимание',0);
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);

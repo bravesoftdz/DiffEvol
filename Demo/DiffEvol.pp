@@ -264,16 +264,13 @@ begin
 end;
 
 (*
-==============================================================================
 Name: getBestPopulation
 Description:
          Return the current best population. This function must not be called
          before the first call to evolve ().
 Returns: A reference on the population. It remains valid until subsequent
          call to evolve() function.
-Throws:  Nothing
-==============================================================================
-*)
+Throws:  Nothing *)
 
 function TDiffEvol.getBestPopulation: TDiffEvolPopulation;
 begin
@@ -282,15 +279,12 @@ begin
 end;
 
 (*
-==============================================================================
 Name: getBestCost
 Description:
 	Return the cost evaluation for the current best population. This function
 	must not be called before the first call to evolve ().
 Returns: The cost.
-Throws: Nothing
-==============================================================================
-*)
+Throws: Nothing *)
 
 function TDiffEvol.getBestCost: Double;
 begin

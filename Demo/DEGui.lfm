@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 1803
+  Left = 1835
   Height = 740
-  Top = 45
+  Top = 43
   Width = 538
   Caption = 'VSDE'
   ClientHeight = 740
@@ -29,10 +29,12 @@ object Form1: TForm1
       Top = 6
       Width = 475
       Color = 14221311
+      Font.CharSet = RUSSIAN_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Consolas'
-      Font.Style = [fsBold]
+      Font.Height = -13
+      Font.Name = 'Courier'
+      Font.Pitch = fpFixed
+      Font.Quality = fqDraft
       Lines.Strings = (
         'LogBox'
       )
@@ -179,7 +181,7 @@ object Form1: TForm1
       Height = 21
       Top = 144
       Width = 38
-      Color = clSkyBlue
+      Color = 16116704
       TabOrder = 6
       Text = '0,0'
     end
@@ -204,7 +206,7 @@ object Form1: TForm1
       Height = 21
       Top = 144
       Width = 38
-      Color = clSkyBlue
+      Color = 16116704
       TabOrder = 7
       Text = '-0.7'
     end
@@ -221,7 +223,7 @@ object Form1: TForm1
       Height = 21
       Top = 176
       Width = 38
-      Color = clSkyBlue
+      Color = 16116704
       TabOrder = 8
       Text = '0,7'
     end
@@ -238,7 +240,7 @@ object Form1: TForm1
       Height = 21
       Top = 176
       Width = 38
-      Color = clSkyBlue
+      Color = 16116704
       TabOrder = 9
       Text = '1,0'
     end
@@ -414,7 +416,9 @@ object Form1: TForm1
     Height = 30
     Top = 688
     Width = 75
+    Cancel = True
     Caption = 'Exit'
+    Default = True
     OnClick = BitBtn1Click
     TabOrder = 3
   end
@@ -443,6 +447,7 @@ object Form1: TForm1
     Width = 107
     Caption = 'Run VSModel'
     OnClick = ButtonVSClick
+    ParentShowHint = False
     TabOrder = 6
   end
 end
