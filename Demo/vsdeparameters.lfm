@@ -1,7 +1,7 @@
 object FormEditParameters: TFormEditParameters
-  Left = 1379
+  Left = 1385
   Height = 744
-  Top = 86
+  Top = 23
   Width = 773
   Caption = 'FormEditParameters'
   ClientHeight = 744
@@ -39,6 +39,7 @@ object FormEditParameters: TFormEditParameters
           Title.Caption = 'Info'
           Width = 430
         end>
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goAlwaysShowEditor, goSmoothScroll]
       TabOrder = 0
     end
   end

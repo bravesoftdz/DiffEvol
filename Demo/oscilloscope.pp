@@ -86,5 +86,7 @@ end;
 
 end.
 
-(* http://wiki.freepascal.org/TAChart_Tutorial:_Function_Series *)
+(* http://wiki.freepascal.org/TAChart_Tutorial:_Function_Series
+   http://www.gamedev.ru/code/terms/Genetic_Algorithm
+*)
 

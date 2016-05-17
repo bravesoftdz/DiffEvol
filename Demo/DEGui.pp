@@ -81,6 +81,7 @@ type
 var
   FormVSDE: TFormVSDE;
   FormEditParameters1: TFormEditParameters;
+  CurrentEachResult: integer;
 
 implementation
 
@@ -93,7 +94,7 @@ procedure TFormVSDE.ButtonVSClick(Sender: TObject);
 var
   vsde: TDiffEvol;
   mn, mx, x: TDiffEvolPopulation;
-  pass, i, m: Integer;
+  pass, i: Integer;
   Cost, error: Double;
   best_pop: TDiffEvolPopulation;
 
@@ -115,42 +116,55 @@ begin
   GAIN_R2 := StrToFloat(EditGainR2.Text);;
   GAIN_R3 := StrToFloat(EditGainR3.Text);;
   CR := 1.0;
-  LogBox.Lines.Clear;
+  LogBox.Lines.Clear; LogBox.Lines.Clear;
   LogBox.Lines.Add('VSDE DE Parameters OK.');
 
   (* Get Form VS Parameters *)
   VS_BYEAR := StrToInt(BeginYear.Text); VS_EYEAR := StrToInt(EndYear.Text);
   LogBox.Lines.Add('VSDE VS Parameters OK.');
 
-  (* Create *)
+  (* Create bounds*)
+  InitVSDEParam;
   SetLength(mn, VS_ORDER);
   SetLength(mx, VS_ORDER);
   for i := 0 to VS_ORDER - 1 do begin
-    mn[i]:= -5.7;
-    mx[i]:=  5.7;
+    mn[i]:= VSDEParam.min_bounds[i+1];
+    mx[i]:= VSDEParam.max_bounds[i+1];
+    LogBox.Lines.Add('Bounds(' + Inttostr(i) + ') := ' + FloattostrF(mn[i], ffFixed, 6, 2)
+                               + ', ' + FloattostrF(mx[i], ffFixed, 6, 2));
   end;
   vsde:=TDiffEvol.Create(POP_COUNT, VS_ORDER, mn, mx);
   vsde.OnCalcCosts := @DiffEvolGrowthFitnessFunction; (* set fitness function *)
 
   (* Here, the exact coefficients are found after about N iterations *)
-  m := 0;
+  CurrentEachResult := 0;
   for pass:=0 to PASS_COUNT do begin
     vsde.evolve (GAIN_BEST, GAIN_R1, GAIN_R2, GAIN_R3, CR);
     Cost := vsde.getBestCost;
-    if m >= StrToInt(EachResult.Text) then begin
+    if CurrentEachResult >= StrToInt(EachResult.Text) then begin
        LogBox.Lines.Add('Pass ' + Inttostr(Pass) + ': ' + FloattostrF(Cost, ffFixed, 6, 2));
-       m := 0;
+       CurrentEachResult := 0;
        end
-    else m := m + 1;
+    else CurrentEachResult := CurrentEachResult + 1;
   end;
   (* Print result *)
   LogBox.Lines.Add('Theoric / Found / Error');
   (* Application.MessageBox(PChar('В процессе разработки....'), 'Внимание',0); *)
 end;
 
-function TFormVSDE.DiffEvolGrowthFitnessFunction(Sender: TObject; const Population :TDiffEvolPopulation):Double;
 (* Cost function *)
+function TFormVSDE.DiffEvolGrowthFitnessFunction(Sender: TObject; const Population :TDiffEvolPopulation):Double;
+var
+  i: integer;
+  pop: string;
 begin
+  if CurrentEachResult >= StrToInt(EachResult.Text) then begin
+    VSDEParameters.FillCells(Population);
+    for i := 0 to Length(Population) - 1 do begin  {#todo : почему параметры выходят за определенные границы}
+      pop := pop +  FloattostrF(Population[i], ffFixed, 6, 2) + ', '
+    end;
+    LogBox.Lines.Add(pop);
+  end;
   Result := GrowthFitnessFunction(Population);
 end;
 

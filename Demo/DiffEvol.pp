@@ -4,6 +4,7 @@ unit DiffEvol;
 {$mode objfpc}{$H+}
 {$RANGECHECKS ON}
 {$DEBUGINFO ON}
+{$ASSERTIONS ON}
 
 (* DiffEvol
    Delphi Port 2005 by Christian-W. Budde

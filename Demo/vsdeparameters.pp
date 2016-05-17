@@ -52,6 +52,7 @@ procedure FillGrid;
 procedure SaveGrid;
 procedure LoadGrid;
 procedure InitVSDEParam;
+procedure FillCells(newCurrent: array of FloatType);
 
 implementation
 
@@ -245,6 +246,22 @@ begin
      end;
 end;
 
+
+procedure FillCells(newCurrent: array of FloatType);
+var
+  i : integer;
+begin
+  with FormEditParameters.StringGridParameters do
+    begin
+      for i := 1 to Length(newCurrent) do
+        begin
+          with VSDEParam do
+            begin
+              Cells[2, i] := FloattostrF(newCurrent[i-1],ffFixed,6,2);;
+            end;
+        end;
+     end;
+end;
 
 procedure SaveGrid;
 begin
