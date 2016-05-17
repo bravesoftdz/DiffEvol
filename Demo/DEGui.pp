@@ -2,6 +2,7 @@ unit DEGui;
 
 //{$MODE Delphi}
 {$mode objfpc}{$H+}
+
 {$RANGECHECKS ON}
 {$DEBUGINFO ON}
 
@@ -10,17 +11,17 @@ interface
 uses
   LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls,
   Forms, DiffEvol, Math, Dialogs, StdCtrls, Buttons, ExtCtrls, CheckLst,
-  ComCtrls, TestFunctions, VSModel;
+  ComCtrls, TestFunctions, VSModel, VSDEparameters, Oscilloscope;
 
 type
   (* http://wiki.freepascal.org/TAChart_Tutorial:_Getting_started
   http://www.mathworks.com/matlabcentral/fileexchange/15164-speedyga--a-fast-simple-genetic-algorithm
   http://pubs.rsc.org/en/content/articlehtml/2015/ja/c4ja00470a
   *)
-  { TForm1 }
+  { TFormVSDE }
 
-  TForm1 = class(TForm)
-    BitBtn1: TBitBtn;
+  TFormVSDE = class(TForm)
+    ButtonExit: TBitBtn;
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
     BeginYear: TLabeledEdit;
@@ -36,10 +37,10 @@ type
     LabelGainB: TLabel;
     LabelEachResult: TLabel;
     CrossingOver: TLabeledEdit;
-    WriteResult: TCheckBox;
-    InitialValues: TCheckBox;
+    SaveParam: TCheckBox;
+    EditParameters: TCheckBox;
     SizeTracheids: TLabeledEdit; (* индекс прироста, соответствующий данным измерений размеров трахеид *)
-    PlotResult: TCheckBox;
+    FormOscilloscope: TCheckBox;
     EndYear: TLabeledEdit;
     SoilMelting: TCheckBox;
     GroupBox1: TGroupBox;
@@ -53,27 +54,33 @@ type
     Generation: TLabeledEdit;
     MSE: TLabeledEdit;
     LogBox: TMemo;
-    procedure BitBtn1Click(Sender: TObject);
+
+    procedure ButtonExitClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure ButtonVSClick(Sender: TObject);
+    procedure EditParametersChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ButtonClick(Sender: TObject);
     procedure ButtonClick1(Sender: TObject);
-    procedure InitialValuesClick(Sender: TObject);
-    procedure PlotResultClick(Sender: TObject);
+    procedure EditParametersClick(Sender: TObject);
+    procedure FormOscilloscopeChange(Sender: TObject);
+    procedure FormOscilloscopeClick(Sender: TObject);
+    procedure SaveParamChange(Sender: TObject);
     procedure TestFunctionRastrigin(Sender: TObject);
   private
     de: TDiffEvol;
   public
     function TestFunction(Sender: TObject; const Population: TDiffEvolPopulation): Double;
     function TestDiffEvolFunctionRastrigin(Sender: TObject; const Population: TDiffEvolPopulation): Double;
+    function DiffEvolGrowthFitnessFunction(Sender: TObject; const Population :TDiffEvolPopulation):Double;
   end;
 
 var
-  Form1: TForm1;
+  FormVSDE: TFormVSDE;
+  FormEditParameters1: TFormEditParameters;
 
 implementation
 
@@ -82,7 +89,72 @@ implementation
 const ORDER = 4;
       Coefficients : Array[0..ORDER] of Double = (2.25, -4.9, 3.58, 0.7, -0.169);
 
-procedure TForm1.TestFunctionRastrigin(Sender: TObject);  (* call on click button Start Rastrigin*)
+procedure TFormVSDE.ButtonVSClick(Sender: TObject);
+var
+  vsde: TDiffEvol;
+  mn, mx, x: TDiffEvolPopulation;
+  pass, i, m: Integer;
+  Cost, error: Double;
+  best_pop: TDiffEvolPopulation;
+
+  VS_ORDER, PASS_COUNT, POP_COUNT: Integer;
+  VS_MSE, GAIN_BEST, GAIN_R1, GAIN_R2, GAIN_R3, CR: Double;
+
+  VS_CLIMDATA, VS_CHRONOLOGY, VS_SIZETRACHEIDS: string;
+  VS_BYEAR, VS_EYEAR: integer;
+  VS_LATITUDE: string;
+
+begin
+  (* Get Form DE Parameters *)
+  VS_ORDER := StrToInt(VariableCount.Text);
+  POP_COUNT := StrToInt(PopulationCount.Text);
+  PASS_COUNT := StrToInt(Generation.Text);
+  VS_MSE := StrToFloat(MSE.Text);
+  GAIN_BEST := StrToFloat(EditGainB.Text);
+  GAIN_R1 := StrToFloat(EditGainR1.Text);;
+  GAIN_R2 := StrToFloat(EditGainR2.Text);;
+  GAIN_R3 := StrToFloat(EditGainR3.Text);;
+  CR := 1.0;
+  LogBox.Lines.Clear;
+  LogBox.Lines.Add('VSDE DE Parameters OK.');
+
+  (* Get Form VS Parameters *)
+  VS_BYEAR := StrToInt(BeginYear.Text); VS_EYEAR := StrToInt(EndYear.Text);
+  LogBox.Lines.Add('VSDE VS Parameters OK.');
+
+  (* Create *)
+  SetLength(mn, VS_ORDER);
+  SetLength(mx, VS_ORDER);
+  for i := 0 to VS_ORDER - 1 do begin
+    mn[i]:= -5.7;
+    mx[i]:=  5.7;
+  end;
+  vsde:=TDiffEvol.Create(POP_COUNT, VS_ORDER, mn, mx);
+  vsde.OnCalcCosts := @DiffEvolGrowthFitnessFunction; (* set fitness function *)
+
+  (* Here, the exact coefficients are found after about N iterations *)
+  m := 0;
+  for pass:=0 to PASS_COUNT do begin
+    vsde.evolve (GAIN_BEST, GAIN_R1, GAIN_R2, GAIN_R3, CR);
+    Cost := vsde.getBestCost;
+    if m >= StrToInt(EachResult.Text) then begin
+       LogBox.Lines.Add('Pass ' + Inttostr(Pass) + ': ' + FloattostrF(Cost, ffFixed, 6, 2));
+       m := 0;
+       end
+    else m := m + 1;
+  end;
+  (* Print result *)
+  LogBox.Lines.Add('Theoric / Found / Error');
+  (* Application.MessageBox(PChar('В процессе разработки....'), 'Внимание',0); *)
+end;
+
+function TFormVSDE.DiffEvolGrowthFitnessFunction(Sender: TObject; const Population :TDiffEvolPopulation):Double;
+(* Cost function *)
+begin
+  Result := GrowthFitnessFunction(Population);
+end;
+
+procedure TFormVSDE.TestFunctionRastrigin(Sender: TObject);  (* call on click button Start Rastrigin*)
 const
   MM = 100;
 var
@@ -129,7 +201,7 @@ begin
   end;
   rde:=TDiffEvol.Create(POP_COUNT, VS_ORDER, mn, mx, @TestDiffEvolFunctionRastrigin);
   (* *)
-  //rde.OnCalcCosts := Form1.TestDiffEvolFunctionRastrigin; (* set fitness function *)
+  //rde.OnCalcCosts := FormVSDE.TestDiffEvolFunctionRastrigin; (* set fitness function *)
   (* Here, the exact coefficients are found after about N iterations *)
   m := 0;
   for pass:=0 to PASS_COUNT do begin
@@ -158,13 +230,15 @@ begin
   mn := nil; mx := nil; x := nil;
 end;
 
-function TForm1.TestDiffEvolFunctionRastrigin(Sender: TObject; const Population :TDiffEvolPopulation):Double;
+
+
+function TFormVSDE.TestDiffEvolFunctionRastrigin(Sender: TObject; const Population :TDiffEvolPopulation):Double;
 (* Rastrigin Function *)
 begin
   Result := Rastrigin(Population);
 end;
 
-function TForm1.TestFunction(Sender: TObject; const Population :TDiffEvolPopulation):Double;
+function TFormVSDE.TestFunction(Sender: TObject; const Population :TDiffEvolPopulation):Double;
 var y_Population  : Double;
     y_Reference   : Double;
     i             : Integer;
@@ -196,10 +270,17 @@ begin
  Result:=ln(err_sum);  // =cost...!!! TODO
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TFormVSDE.FormCreate(Sender: TObject);
 var mn, mx : TDiffEvolPopulation;
     i      : Integer;
 begin
+
+ FormEditParameters := TFormEditParameters.Create(Self); (*  *)
+ OneOscilloscope := TOscilloscope.Create(Self);
+ //LoadGrid;
+ FillGrid;
+ SaveGrid;
+
  SetLength(mn,ORDER+1);
  SetLength(mx,ORDER+1);
  for i:=0 to ORDER do
@@ -218,38 +299,47 @@ begin
  LogBox.Lines.Add('of formation of annual rings of coniferous Vaganov-Shashkin V6 9.5.16');
 end;
 
-procedure TForm1.Button4Click(Sender: TObject);
+
+procedure TFormVSDE.Button4Click(Sender: TObject);
 begin
   Halt(0);
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TFormVSDE.Button2Click(Sender: TObject);
 begin
 
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TFormVSDE.Button1Click(Sender: TObject);
 begin
 
 end;
 
-procedure TForm1.BitBtn1Click(Sender: TObject);
+procedure TFormVSDE.ButtonExitClick(Sender: TObject);
 begin
   Halt(0);
 end;
 
-procedure TForm1.ButtonVSClick(Sender: TObject);
+
+procedure TFormVSDE.EditParametersChange(Sender: TObject);
+begin
+  if FormVSDE.EditParameters.Checked = true then
+     FormEditParameters.Show
+  else
+     FormEditParameters.Hide
+end;
+
+procedure TFormVSDE.SaveParamChange(Sender: TObject);
 begin
   Application.MessageBox(PChar('В процессе разработки....'), 'Внимание',0);
-  //Application.MessageBox(PChar('In the process of developing....'), 'Внимание',0);
 end;
 
-procedure TForm1.FormDestroy(Sender: TObject);
+procedure TFormVSDE.FormDestroy(Sender: TObject);
 begin
  de.Free;
 end;
 
-procedure TForm1.ButtonClick(Sender: TObject);
+procedure TFormVSDE.ButtonClick(Sender: TObject);
 var pass     : Integer;
     cost     : Double;
     i        : Integer;
@@ -279,7 +369,7 @@ begin
                     FloattostrF(Error,ffFixed,4,2));
   end;
 end;
-procedure TForm1.ButtonClick1(Sender: TObject);
+procedure TFormVSDE.ButtonClick1(Sender: TObject);
 var pass     : Integer;
     cost     : Double;
     i        : Integer;
@@ -310,12 +400,21 @@ begin
   end;
 end;
 
-procedure TForm1.InitialValuesClick(Sender: TObject);
+procedure TFormVSDE.EditParametersClick(Sender: TObject);
 begin
-  (* set boolean flag and wrir logbox values *)
+  (* set boolean flag and wrrite logbox values *)
 end;
 
-procedure TForm1.PlotResultClick(Sender: TObject);
+procedure TFormVSDE.FormOscilloscopeChange(Sender: TObject);
+(* *)
+begin
+  if FormVSDE.FormOscilloscope.Checked = true then
+     OneOscilloscope.Show
+  else
+     OneOscilloscope.Hide
+end;
+
+procedure TFormVSDE.FormOscilloscopeClick(Sender: TObject);
 begin
   (* Plot .CRN and evalCRN *)
 

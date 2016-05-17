@@ -33,12 +33,15 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="1">
+    <RequiredPackages Count="2">
       <Item1>
-        <PackageName Value="LCL"/>
+        <PackageName Value="TAChartLazarusPkg"/>
       </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
     </RequiredPackages>
-    <Units Count="5">
+    <Units Count="7">
       <Unit0>
         <Filename Value="DE.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -54,7 +57,7 @@
       <Unit3>
         <Filename Value="DEGui.pp"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
+        <ComponentName Value="FormVSDE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit3>
@@ -63,6 +66,22 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="VSModel"/>
       </Unit4>
+      <Unit5>
+        <Filename Value="vsdeparameters.pp"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormEditParameters"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="VSDEparameters"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="oscilloscope.pp"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Oscilloscope"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Oscilloscope"/>
+      </Unit6>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

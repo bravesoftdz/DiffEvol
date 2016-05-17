@@ -1,10 +1,18 @@
 unit VSModel;
 
+(* VSModel
+   Based on an implementation by A.Shashkin
+   Fortran v.31 19 may 98
+
+   Lazarus/FPC port 2016 by Ivan Tychkov & tmeits
+   https://github.com/tmeits/DiffEvol
+
+   Модель формирования годичных колец хвойных Ваганова-Шашкина V6 9.5.16 BIMODAL
+   *)
+
 {$mode objfpc}{$H+}
 {$RANGECHECKS ON}
 {$DEBUGINFO ON}
-
-(* Модель формирования годичных колец хвойных Ваганова-Шашкина V6 9.5.16 BIMODAL *)
 
 interface
 
@@ -32,6 +40,21 @@ const
   RMAX =200;
 
 var
+  (*
+  tmeits
+  в эти переменные заносятся значения с формы DEGui и затем передаются в
+     оригинальную функцию growth *)
+  vsde_filename_1, vsde_path, vsde_filename_4: string;
+  vsde_latitude: string;
+  vsde_endyear_str: string;
+  vsde_Year_number: integer;
+  vsde_gr_ini: real100;
+  vsde_gr_middle: real100;
+  vsde_BEGYEAR: integer;
+  vsde_ENDYEAR: integer;
+  vsde_years: integer100;
+
+
    //Mainform: TMainform;
    p1_TB,p2_TB,p3_TB,p4_TB,p5_TB,p6_TB,p7_TB,P8_TB,P9_TB,P10_TB,p11_TB,p12_TB,
    p13_TB,p14_TB,p15_TB,p16_TB,p17_TB,p18_TB,p19_TB,p22_TB,PC1_TB,pc6_TB,
@@ -67,6 +90,9 @@ var
    Beg_gr1,End_gr1,Beg_gr2,End_gr2:integer; //начало и конец сезона роста
    check_c, check_s,check_t, check_p:integer;
    mean_rates:integer; // переменная для сохранения среднего значения при стандартизации суммарных скоростей роста
+
+   function  GrowthFitnessFunction(x: array of FloatType): FloatType;
+
 
 implementation
 
@@ -1570,16 +1596,19 @@ Begin
  if above_zero=true then begin n1:=1; n2:=m; end;}
 end;
 
+
 (* /growth *)
-procedure growth (filename_1,path,filename_4:string;
+procedure growth (
+                 filename_1, path,
+                 filename_4:string;
                  latitude: string;
-                 endyear_str:string;
-                 var Year_number:integer;
-                 var gr_ini:real100;
-                 var gr_middle:real100;
-                 var BEGYEAR:integer;
-                 var ENDYEAR:integer;
-                 var years{_ar}:integer100);
+                 endyear_str: string;
+                 var Year_number: integer;
+                 var gr_ini: real100;
+                 var gr_middle: real100;
+                 var BEGYEAR: integer;
+                 var ENDYEAR: integer;
+                 var years {_ar}: integer100);
 var
 TEM, PRE, GR, DL, SM,Tem1:array366; //array [1..366] of real;
 P:  array30;
@@ -1936,6 +1965,154 @@ begin
 end;
 (* growth/ *)
 
+procedure saveResult();
+(*  *)
 
-end.
+var
+  f1,f2,f3:textfile;
+  f_1,f_2,f_3:string;
+  i:integer;
+
+  P:  array30;  //поменять имена
+  K:integer20;
+  pc: real20;
+  KC: real10;
+  ps,ks:real10;
+  filter:string;
+  p_text: array [1..31] of string [50];
+  k_text: array [1..30] of string [50];
+  KC_text,PS_text,KS_text:array [1..10] of string [62];
+  PC_text:array [1..20] of string [50];
+
+begin
+
+  assignfile(f1, 'parameters.par');
+  reset(f1);
+  for i:=1 to 2 do readln(f1);
+  readln(f1,filter);
+  readln(f1);
+  for i:=1 to 31 do
+  readln(f1,p[i],p_text[i]);
+  readln(f1);
+  for i:=1 to 20 do readln(f1,k[i],k_text[i]);
+  readln(f1);
+  for i:=1 to 10 do
+  readln(F1,KC[i],KC_text[i]);
+  readln(f1);
+  for i:=1 to 20 do
+  readln(F1,PC[i],PC_text[i]);
+  readln(F1);
+  for i:=1 to 10 do readln(F1,PS[i],PS_text[i]);
+  readln(F1);
+  for i:=1 to 10 do readln(F1,KS[i],KS_text[i]);
+  closefile(f1);
+
+  //text
+  p_text[1]:='T1   - Minimum temperature for tree growth';
+  p_text[2]:='T2   - Lower end of range of optimal temperatures T2-T3';
+  p_text[3]:='T3   - Upper end of range of optimal temperatures';
+  p_text[4]:='T4   - Maximum temperature for tree growth';
+  p_text[5]:='W4   - Maximum soil moisture for tree growth';
+  p_text[6]:='     - Coefficient of temperature modulation T+b6';
+  p_text[7]:='Tm   - Sum of temperature for start soil melting';
+  p_text[8]:='sm1  - First coefficient of soil melting';
+  p_text[9]:='sm2  - Second coefficient of soil melting';
+  p_text[10]:='Wo   - Initial soil moisture';
+  p_text[11]:='Pmax - Maximum daily precipitation for saturated soil';
+  p_text[12]:='Wmin - Minimum soil moisture (wilting point)';
+  p_text[13]:='lr   - Root depth';
+  p_text[14]:='C2   - First coefficient for calculation of transpiration';
+  p_text[15]:='C3   - Second coefficient for calculation of transpiration';
+  p_text[16]:='C1   - Fraction of precip. penetrating soil (not caught by crown) (1-p16)';
+  p_text[17]:='W1   - Minimum soil moisture for tree growth, relative to saturated soil (v/vs)';
+  p_text[18]:='W2   - Lower end of range of optimal soil moistures (v/vs) W2-W3';
+  p_text[19]:='W3   - Upper end of range of optimal soil moistures (v/vs)';
+  p_text[20]:='W4   - Growth is stoped at this soil moisture';
+  p_text[21]:='Cd   - Coefficient for water drainage from soil (rel. unit)';
+  p_text[22]:='Tg   - Sum of temperature to start growth';
+  p_text[23]:='Sno  - Initial snowpack';
+  p_text[24]:='     - Rate of snow melting';
+  p_text[25]:='     - Minimum temperature snow melting';
+  p_text[26]:='     - Temperature correction on elevation';
+  p_text[27]:='     - This parameter is changed by program';
+  p_text[28]:='     - Coefficient of precipitation modification';
+  p_text[29]:='     - This parameter is changed by program';
+  p_text[30]:='     - Delta for parameter';
+  p_text[31]:='	     - Coefficient of solar modification';
+  k_text[1]:=' 	 - Soil melting  (1), no (0)';
+  k_text[2]:='	 - This parameter is changed by program';
+  k_text[3]:='	 - Estimation with pause for each 5 years if 1, without if 0';
+  k_text[4]:='	 - Snow melting (1), no (0)';
+  k_text[5]:='	 - This parameter is changed by program';
+  k_text[6]:='	 - This parameter is changed by program';
+  k_text[7]:='	 - This parameter is changed by program';
+  k_text[8]:='	 - Maximum duration (days) of latewood formation';
+  k_text[9]:='	 - Period of sum temp. to start growth';
+  k_text[10]:='	 - Period of sum temp. to start soil melting';
+  k_text[11]:='	 - This parameter is changed by program';
+  k_text[12]:='	 - This parameter is changed by program';
+  k_text[13]:='	 - Options CSCALC 0-4, no calculation (5)';
+  k_text[14]:='	 - This parameter is changed by program';
+  k_text[15]:='	 - Period of cell enlargement after last division';
+  k_text[16]:='	 - This parameter is changed by program';
+  k_text[17]:='	 - This parameter is changed by program';
+  k_text[18]:='	 - Number of parameter which is changed';
+  k_text[19]:='	 - Nnumber of itterations';
+  k_text[20]:='	 - Skale win 5';
+ //
+
+  assignfile(f1, 'deparameters.par');         //grrt50
+  rewrite(f1);
+  writeln(f1,'File of parameters');
+  writeln(f1);
+  writeln(f1,Filt);
+  Writeln(f1,'PARAMETERS   FORMAT');
+  for i:=1 to 31 do
+  writeln(f1,(p_res[i]):8:4,i:4,' ',p_text[i]);
+  writeln(f1,'INTEGER ARRAY K(20)');
+  for i:=1 to 20 do writeln(f1,(k_res[i]):6,i:4,' ',k_text[i]);
+  writeln(f1);
+  for i:=1 to 10 do
+  writeln(F1,KC_res[i]:2:2,' ',KC_text[i]);
+  writeln(f1);
+  for i:=1 to 20 do
+  writeln(F1,PC_res[i]:2:2,' ',PC_text[i]);
+  writeln(F1,'Real array ps(10)');
+  for i:=1 to 10 do writeln(F1,PS_res[i]:2:2,PS_text[i]);
+  writeln(F1,'integer arrey ks(10)');
+  for i:=1 to 10 do writeln(F1,KS_res[i]:2:0,KS_text[i]);
+  closefile(f1);
+
+end;
+
+
+(*
+ tmeits
+/GrowthFitnessFunction *)
+function  GrowthFitnessFunction(x: array of FloatType): FloatType;
+var
+  rTo, rFrom: integer;
+begin
+   rTo := 300; rFrom := 10;
+   GrowthFitnessFunction := (Random(rTo - rFrom) + rFrom) / 100.0;
+   (* Присвоим вектор параметрам бегункам *)
+   (* growth(Edit1.Text,Edit2.Text,Edit5.Text,Edit7.Text,Edit8.Text,num,gr_ini,gr_middle,BEGYEAR,ENDYEAR,years_array);
+      growth(Edit1.Text,Edit2.Text,Edit5.Text,Edit7.Text,Edit8.Text,num,gr_ini,gr_middle,BEGYEAR,ENDYEAR,years_array
+   *)
+   (*
+  vsde_filename_1, vsde_path, vsde_filename_4: string;
+  vsde_latitude: string;
+  vsde_endyear_str: string;
+  vsde_Year_number: integer;
+  vsde_gr_ini: real100;
+  vsde_gr_middle: real100;
+  vsde_BEGYEAR: integer;
+  vsde_ENDYEAR: integer;
+  vsde_years: integer100;
+   *)
+
+end;
+
+(* GrowthFitnessFunction/ *)
+end. (* VSModel/ *)
 

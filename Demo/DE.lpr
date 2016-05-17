@@ -12,6 +12,6 @@ http://wiki.freepascal.org/Lazarus_Resources/ru *)
 
 begin
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFormVSDE, FormVSDE);
   Application.Run;
 end.

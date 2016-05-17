@@ -1,7 +1,7 @@
-object Form1: TForm1
-  Left = 1835
+object FormVSDE: TFormVSDE
+  Left = 2040
   Height = 740
-  Top = 43
+  Top = 54
   Width = 538
   Caption = 'VSDE'
   ClientHeight = 740
@@ -208,7 +208,7 @@ object Form1: TForm1
       Width = 38
       Color = 16116704
       TabOrder = 7
-      Text = '-0.7'
+      Text = '-0,7'
     end
     object LabelGainR2: TLabel
       Left = 28
@@ -278,7 +278,7 @@ object Form1: TForm1
     object Latitude: TLabeledEdit
       Left = 16
       Height = 21
-      Top = 65
+      Top = 64
       Width = 80
       Color = clMoneyGreen
       EditLabel.AnchorSideLeft.Control = Latitude
@@ -287,12 +287,12 @@ object Form1: TForm1
       EditLabel.AnchorSideBottom.Control = Latitude
       EditLabel.Left = 16
       EditLabel.Height = 13
-      EditLabel.Top = 49
+      EditLabel.Top = 48
       EditLabel.Width = 80
       EditLabel.Caption = 'Latitude'
       EditLabel.ParentColor = False
       TabOrder = 1
-      Text = '75,56'
+      Text = '75.56'
     end
     object Chronology: TLabeledEdit
       Left = 120
@@ -326,7 +326,7 @@ object Form1: TForm1
       TabOrder = 3
     end
     object BeginYear: TLabeledEdit
-      Left = 16
+      Left = 15
       Height = 21
       Top = 112
       Width = 80
@@ -335,7 +335,7 @@ object Form1: TForm1
       EditLabel.AnchorSideRight.Control = BeginYear
       EditLabel.AnchorSideRight.Side = asrBottom
       EditLabel.AnchorSideBottom.Control = BeginYear
-      EditLabel.Left = 16
+      EditLabel.Left = 15
       EditLabel.Height = 13
       EditLabel.Top = 96
       EditLabel.Width = 80
@@ -363,23 +363,25 @@ object Form1: TForm1
       TabOrder = 5
       Text = '2000'
     end
-    object WriteResult: TCheckBox
-      Left = 17
+    object SaveParam: TCheckBox
+      Left = 15
       Height = 19
       Top = 168
-      Width = 86
-      Caption = 'WriteResult'
+      Width = 84
+      Caption = 'SaveParam'
       Checked = True
+      OnChange = SaveParamChange
       State = cbChecked
       TabOrder = 6
     end
-    object PlotResult: TCheckBox
+    object FormOscilloscope: TCheckBox
       Left = 120
       Height = 19
       Top = 144
-      Width = 78
-      Caption = 'PlotResult'
-      OnClick = PlotResultClick
+      Width = 92
+      Caption = 'Oscilloscope'
+      OnChange = FormOscilloscopeChange
+      OnClick = FormOscilloscopeClick
       TabOrder = 7
     end
     object SizeTracheids: TLabeledEdit
@@ -401,17 +403,18 @@ object Form1: TForm1
       TabOrder = 8
       Text = 'jaku.mtr'
     end
-    object InitialValues: TCheckBox
+    object EditParameters: TCheckBox
       Left = 120
       Height = 19
       Top = 168
-      Width = 89
-      Caption = 'InitialValues'
-      OnClick = InitialValuesClick
+      Width = 105
+      Caption = 'EditParameters'
+      OnChange = EditParametersChange
+      OnClick = EditParametersClick
       TabOrder = 9
     end
   end
-  object BitBtn1: TBitBtn
+  object ButtonExit: TBitBtn
     Left = 416
     Height = 30
     Top = 688
@@ -419,7 +422,7 @@ object Form1: TForm1
     Cancel = True
     Caption = 'Exit'
     Default = True
-    OnClick = BitBtn1Click
+    OnClick = ButtonExitClick
     TabOrder = 3
   end
   object BitBtn2: TBitBtn

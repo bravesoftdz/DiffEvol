@@ -4,14 +4,13 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="7">
+    <Units Count="12">
       <Unit0>
         <Filename Value="DE.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos Y="4"/>
+        <CursorPos Y="17"/>
         <UsageCount Value="258"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
         <Filename Value="TestFunctions.pp"/>
@@ -20,188 +19,235 @@
         <CursorPos X="3" Y="3"/>
         <UsageCount Value="258"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
         <Filename Value="DiffEvol.pp"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="13"/>
-        <CursorPos X="33" Y="28"/>
+        <CursorPos X="12" Y="28"/>
         <UsageCount Value="258"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
         <Filename Value="DEGui.pp"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
+        <ComponentName Value="FormVSDE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="226"/>
-        <CursorPos X="75" Y="243"/>
+        <TopLine Value="142"/>
+        <CursorPos X="47" Y="154"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <WindowIndex Value="1"/>
-          <TopLine Value="252"/>
-          <CursorPos X="85" Y="268"/>
+          <TopLine Value="342"/>
+          <CursorPos X="85" Y="358"/>
         </ExtraEditor1>
         <UsageCount Value="258"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
         <Filename Value="vsmodel.pp"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="VSModel"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="1490"/>
-        <CursorPos X="2" Y="1501"/>
-        <UsageCount Value="72"/>
+        <TopLine Value="2082"/>
+        <CursorPos X="48" Y="2106"/>
+        <UsageCount Value="255"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
+        <Filename Value="vsdeparameters.pp"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormEditParameters"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="VSDEparameters"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="224"/>
+        <CursorPos X="45" Y="241"/>
+        <UsageCount Value="210"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="oscilloscope.pp"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Oscilloscope"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Oscilloscope"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="55"/>
+        <CursorPos X="28" Y="62"/>
+        <UsageCount Value="204"/>
+        <Loaded Value="True"/>
+      </Unit6>
+      <Unit7>
         <Filename Value="mainunit.pas"/>
         <UnitName Value="Mainunit"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="1"/>
-        <TopLine Value="2339"/>
-        <CursorPos X="18" Y="2347"/>
+        <TopLine Value="3151"/>
+        <CursorPos Y="3236"/>
+        <UsageCount Value="124"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2193"/>
+        <CursorPos Y="2206"/>
+        <UsageCount Value="9"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\..\vs-model-bimodal\graphunit.pas"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="1"/>
+        <CursorPos X="21" Y="3"/>
+        <UsageCount Value="104"/>
+        <Loaded Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="C:\lazarus\fpc\3.0.0\source\rtl\inc\systemh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="673"/>
+        <CursorPos X="11" Y="793"/>
+        <UsageCount Value="5"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\..\vs-model-bimodal\mainunit.lfm"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="1"/>
+        <CursorPos X="26" Y="4"/>
         <UsageCount Value="32"/>
         <Loaded Value="True"/>
-      </Unit5>
-      <Unit6>
-        <Filename Value="C:\lazarus\lcl\include\winapih.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="183"/>
-        <CursorPos X="10" Y="196"/>
-        <UsageCount Value="10"/>
-      </Unit6>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit11>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="108" Column="9" TopLine="87"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="45" Column="3" TopLine="20"/>
       </Position1>
       <Position2>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="111" Column="9" TopLine="90"/>
+        <Caret Line="140" Column="38" TopLine="394"/>
       </Position2>
       <Position3>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="114" Column="13" TopLine="93"/>
       </Position3>
       <Position4>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="116" Column="9" TopLine="95"/>
+        <Caret Line="64" Column="25" TopLine="40"/>
       </Position4>
       <Position5>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="120" Column="9" TopLine="99"/>
+        <Caret Line="125" Column="12" TopLine="101"/>
       </Position5>
       <Position6>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="121" Column="9" TopLine="100"/>
+        <Caret Line="132" Column="25" TopLine="108"/>
       </Position6>
       <Position7>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="139" Column="14" TopLine="118"/>
+        <Caret Line="195" Column="12" TopLine="171"/>
       </Position7>
       <Position8>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="145" Column="9" TopLine="124"/>
+        <Caret Line="202" Column="24" TopLine="178"/>
       </Position8>
       <Position9>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="149" Column="11" TopLine="128"/>
+        <Caret Line="279" Column="4" TopLine="255"/>
       </Position9>
       <Position10>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="153" Column="9" TopLine="132"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="44" Column="18"/>
       </Position10>
       <Position11>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="154" Column="9" TopLine="133"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="43" Column="18" TopLine="14"/>
       </Position11>
       <Position12>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="254" Column="8" TopLine="232"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="42" Column="18" TopLine="14"/>
       </Position12>
       <Position13>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="261" Column="10" TopLine="239"/>
+        <Caret Line="279" Column="4" TopLine="255"/>
       </Position13>
       <Position14>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="265" Column="8" TopLine="243"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="38" TopLine="10"/>
       </Position14>
       <Position15>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="272" Column="10" TopLine="251"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="39" TopLine="10"/>
       </Position15>
       <Position16>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="284" Column="8" TopLine="262"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="40" TopLine="11"/>
       </Position16>
       <Position17>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="291" Column="10" TopLine="269"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="39" TopLine="11"/>
       </Position17>
       <Position18>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="295" Column="8" TopLine="273"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="40" TopLine="11"/>
       </Position18>
       <Position19>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="302" Column="10" TopLine="281"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="39" TopLine="11"/>
       </Position19>
       <Position20>
-        <Filename Value="DiffEvol.pp"/>
-        <Caret Line="335" Column="11" TopLine="280"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="38" TopLine="11"/>
       </Position20>
       <Position21>
-        <Filename Value="vsmodel.pp"/>
-        <Caret Line="361" TopLine="335"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="40" TopLine="11"/>
       </Position21>
       <Position22>
-        <Filename Value="vsmodel.pp"/>
-        <Caret Line="16" Column="12" TopLine="46"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="71" Column="4" TopLine="54"/>
       </Position22>
       <Position23>
-        <Filename Value="vsmodel.pp"/>
-        <Caret Line="537" Column="32" TopLine="522"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="46" Column="6" TopLine="31"/>
       </Position23>
       <Position24>
-        <Filename Value="vsmodel.pp"/>
-        <Caret Line="1935" Column="11" TopLine="1911"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="47" Column="5" TopLine="31"/>
       </Position24>
       <Position25>
-        <Filename Value="vsmodel.pp"/>
-        <Caret Line="1499" Column="50" TopLine="1460"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="65" Column="68" TopLine="49"/>
       </Position25>
       <Position26>
-        <Filename Value="vsmodel.pp"/>
-        <Caret Line="1500" Column="2" TopLine="1487"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="68" Column="22" TopLine="51"/>
       </Position26>
       <Position27>
-        <Filename Value="vsmodel.pp"/>
-        <Caret Line="1502" Column="12" TopLine="1481"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="73" Column="8" TopLine="55"/>
       </Position27>
       <Position28>
-        <Filename Value="vsmodel.pp"/>
-        <Caret Line="1503" Column="26" TopLine="1490"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="75" Column="28" TopLine="54"/>
       </Position28>
       <Position29>
         <Filename Value="DEGui.pp"/>
-        <Caret Line="243" Column="5" TopLine="230"/>
+        <Caret Line="241" Column="27" TopLine="219"/>
       </Position29>
       <Position30>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="2348" Column="106" TopLine="2344"/>
+        <Filename Value="vsmodel.pp"/>
+        <Caret Line="2097" Column="66" TopLine="2081"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

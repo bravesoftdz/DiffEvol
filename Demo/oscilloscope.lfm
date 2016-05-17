@@ -1,0 +1,27 @@
+object Oscilloscope: TOscilloscope
+  Left = 1906
+  Height = 490
+  Top = 270
+  Width = 637
+  Caption = 'Oscilloscope'
+  ClientHeight = 490
+  ClientWidth = 637
+  LCLVersion = '1.6.0.4'
+  object GroupBoxWindow: TGroupBox
+    Left = 408
+    Height = 369
+    Top = 72
+    Width = 144
+    Caption = 'VS-CRN'
+    TabOrder = 0
+  end
+  object PlotButton: TButton
+    Left = 256
+    Height = 25
+    Top = 424
+    Width = 75
+    Caption = 'Plot'
+    OnClick = PlotButtonClick
+    TabOrder = 1
+  end
+end
