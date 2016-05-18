@@ -192,12 +192,12 @@ var
     fr                : Double;
     fvar,fvar_cnt     : Integer;
 begin
- assert (cr >= 0);
- assert (cr <= 1);
+ assert (cr >= 0.0);
+ assert (cr <= 1.0);
 
- if (fBestPopulation < 0) then FindBest;
+ if (fBestPopulation < 0.0) then FindBest;
 
- gain_r0:=1-gain_best-gain_r1-gain_r2-gain_r3;
+ gain_r0:=1.0-gain_best-gain_r1-gain_r2-gain_r3;
  new_BestPopulation:=fBestPopulation;
  new_best_Cost:=fCurrentGeneration[fBestPopulation].fCost;
 
@@ -338,7 +338,7 @@ begin
    for j:=0 to fPopulationCount-1 do
     begin
      val_rnd:=random;
-     fCurrentGeneration[j].fPopulation[i]:=val_rnd*mul+offset;
+     fCurrentGeneration[j].fPopulation[i]:=val_rnd*mul+offset; {#todo : найти где еще генерятся значения переменных функции}
     end;
   end;
  fBestPopulation:=-1;
@@ -377,3 +377,6 @@ begin
 end;
 
 end.
+(*
+ https://books.google.ru/books?id=hakXI-dEhTkC&pg=PA30&lpg=PA30&dq=1st+random+population+differential+evolution&source=bl&ots=c_2DISP930&sig=VffbwVpZKdjQ99VjkhZQ2uVfw8E&hl=en&sa=X&redir_esc=y#v=onepage&q=1st%20random%20population%20differential%20evolution&f=false
+*)

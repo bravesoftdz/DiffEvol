@@ -62,25 +62,25 @@
         <ResourceBaseClass Value="Form"/>
       </Unit3>
       <Unit4>
-        <Filename Value="vsmodel.pp"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="VSModel"/>
-      </Unit4>
-      <Unit5>
         <Filename Value="vsdeparameters.pp"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormEditParameters"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="VSDEparameters"/>
-      </Unit5>
-      <Unit6>
+      </Unit4>
+      <Unit5>
         <Filename Value="oscilloscope.pp"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Oscilloscope"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Oscilloscope"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="vsmodel.pp"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VSModel"/>
       </Unit6>
     </Units>
   </ProjectOptions>

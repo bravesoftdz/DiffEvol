@@ -128,11 +128,15 @@ begin
   SetLength(mn, VS_ORDER);
   SetLength(mx, VS_ORDER);
   for i := 0 to VS_ORDER - 1 do begin
-    mn[i]:= VSDEParam.min_bounds[i+1];
-    mx[i]:= VSDEParam.max_bounds[i+1];
+    //mn[i]:= VSDEParam.min_bounds[i+1];
+    //mx[i]:= VSDEParam.max_bounds[i+1];
+    mn[i]:= -10.0;
+    mx[i]:= 10.0;
     LogBox.Lines.Add('Bounds(' + Inttostr(i) + ') := ' + FloattostrF(mn[i], ffFixed, 6, 2)
                                + ', ' + FloattostrF(mx[i], ffFixed, 6, 2));
   end;
+  mn[0]:= -0.10;  {#todo : найти где генерятся диапазоны и исправить так чтобы за них значения не вылетали}
+  mx[0]:= 0.1;
   vsde:=TDiffEvol.Create(POP_COUNT, VS_ORDER, mn, mx);
   vsde.OnCalcCosts := @DiffEvolGrowthFitnessFunction; (* set fitness function *)
 
@@ -435,3 +439,9 @@ begin
 end;
 
 end.
+(*
+  https://books.google.ru/books?id=7mLwCAAAQBAJ&pg=PA41&lpg=PA41&dq=initial+cell+pinus&source=bl&ots=79yAPc6qpl&sig=fFb-3izwoI6HR8wA2vnrm-fEHrs&hl=en&sa=X&redir_esc=y#v=onepage&q=initial%20cell%20pinus&f=false
+  https://books.google.ru/books?id=MjvaCQAAQBAJ&pg=PT10&lpg=PT10&dq=%D1%80%D0%BE%D1%81%D1%82+%D0%BA%D0%B0%D0%BC%D0%B1%D0%B8%D1%8F+%D1%81%D0%BE%D1%81%D0%BD%D1%8B&source=bl&ots=FxHQM6Wg9c&sig=2YycWpKgT6H-TQrzN1tKVpD6U6g&hl=en&sa=X&redir_esc=y#v=onepage&q=%D1%80%D0%BE%D1%81%D1%82%20%D0%BA%D0%B0%D0%BC%D0%B1%D0%B8%D1%8F%20%D1%81%D0%BE%D1%81%D0%BD%D1%8B&f=false
+  https://books.google.ru/books?id=4q8oIla3fBIC&pg=PA442&lpg=PA442&dq=cambium+minimum+cell+size&source=bl&ots=BtdT3ljprv&sig=qW11OsgZVMzY6vZl7Vp7Yf_VbPk&hl=en&sa=X&redir_esc=y#v=onepage&q=cambium%20minimum%20cell%20size&f=false
+
+*)

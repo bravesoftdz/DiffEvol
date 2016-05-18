@@ -10,14 +10,14 @@ interface
 uses
   Classes, SysUtils;
 
-function Rastrigin(x:  array of Double): Double;
+function Rastrigin(x: array of double): double;
 
 implementation
 
-function Rastrigin(x: array of Double): Double;
+function Rastrigin(x: array of double): double;
 var
-  A, n, i: Integer;
-  sum: Double;
+  A, n, i: integer;
+  sum: double;
   //pi: Double;
 begin
   A := 10;   //pi := 3.14159;
@@ -25,14 +25,14 @@ begin
   sum := 0.0;
   for i := 0 to n - 1 do
   begin
-    sum := sum + x[i]*x[i] - A*cos(2*pi*x[i]);
+    sum := sum + x[i] * x[i] - A * cos(2 * pi * x[i]);
   end;
-  Rastrigin := A*n + sum;
+  Rastrigin := A * n + sum;
 end;
 
-function TryDecimalStrToInt( const S: string; out Value: Integer): Boolean;
+function TryDecimalStrToInt(const S: string; out Value: integer): boolean;
 begin
-   result := ( pos( '$', S ) = 0 ) and TryStrToInt( S, Value );
+  Result := (pos('$', S) = 0) and TryStrToInt(S, Value);
 end;
-end.
 
+end.

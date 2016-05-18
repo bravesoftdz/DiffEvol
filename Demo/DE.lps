@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="12">
+    <Units Count="13">
       <Unit0>
         <Filename Value="DE.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -15,8 +15,9 @@
       <Unit1>
         <Filename Value="TestFunctions.pp"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="3" Y="3"/>
+        <CursorPos X="7" Y="29"/>
         <UsageCount Value="258"/>
         <Loaded Value="True"/>
       </Unit1>
@@ -24,8 +25,16 @@
         <Filename Value="DiffEvol.pp"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="240"/>
-        <CursorPos X="17" Y="54"/>
+        <TopLine Value="190"/>
+        <CursorPos X="14" Y="200"/>
+        <ExtraEditorCount Value="1"/>
+        <ExtraEditor1>
+          <IsVisibleTab Value="True"/>
+          <EditorIndex Value="2"/>
+          <WindowIndex Value="1"/>
+          <TopLine Value="25"/>
+          <CursorPos X="25" Y="38"/>
+        </ExtraEditor1>
         <UsageCount Value="258"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -35,29 +44,22 @@
         <ComponentName Value="FormVSDE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="140"/>
-        <CursorPos X="26" Y="166"/>
+        <EditorIndex Value="2"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <WindowIndex Value="1"/>
-          <TopLine Value="356"/>
-          <CursorPos X="85" Y="372"/>
+          <TopLine Value="360"/>
+          <CursorPos X="85" Y="376"/>
         </ExtraEditor1>
         <UsageCount Value="258"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="vsmodel.pp"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="VSModel"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="2089"/>
-        <CursorPos X="39" Y="2085"/>
+        <Filename Value="vsmodel2.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="196"/>
         <UsageCount Value="255"/>
-        <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="vsdeparameters.pp"/>
@@ -81,15 +83,14 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Oscilloscope"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="60"/>
-        <CursorPos X="54" Y="90"/>
+        <TopLine Value="24"/>
+        <CursorPos X="22" Y="45"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="mainunit.pas"/>
         <UnitName Value="Mainunit"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="1"/>
         <TopLine Value="3151"/>
@@ -106,7 +107,7 @@
       </Unit8>
       <Unit9>
         <Filename Value="..\..\vs-model-bimodal\graphunit.pas"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="1"/>
         <CursorPos X="21" Y="3"/>
         <UsageCount Value="104"/>
@@ -121,133 +122,142 @@
       </Unit10>
       <Unit11>
         <Filename Value="..\..\vs-model-bimodal\mainunit.lfm"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="1"/>
         <CursorPos X="26" Y="4"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit11>
+      <Unit12>
+        <Filename Value="vsmodel.pp"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VSModel"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="289"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit12>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="vsmodel.pp"/>
-        <Caret Line="2097" Column="66" TopLine="2081"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="381" TopLine="321"/>
       </Position1>
       <Position2>
-        <Filename Value="vsdeparameters.pp"/>
-        <Caret Line="64" Column="91" TopLine="22"/>
+        <Filename Value="DiffEvol.pp"/>
       </Position2>
       <Position3>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="155" Column="22" TopLine="136"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="51" Column="21" TopLine="25"/>
       </Position3>
       <Position4>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="118" Column="77" TopLine="102"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="105" Column="8" TopLine="79"/>
       </Position4>
       <Position5>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="125" Column="22" TopLine="102"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="118" Column="63" TopLine="92"/>
       </Position5>
       <Position6>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="118" Column="90" TopLine="102"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="157" Column="8" TopLine="131"/>
       </Position6>
       <Position7>
-        <Filename Value="vsdeparameters.pp"/>
-        <Caret Line="259" Column="67" TopLine="240"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="176" Column="46" TopLine="150"/>
       </Position7>
       <Position8>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="155" Column="39" TopLine="131"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="177" Column="46" TopLine="151"/>
       </Position8>
       <Position9>
-        <Filename Value="vsdeparameters.pp"/>
-        <Caret Line="249" Column="53" TopLine="222"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="178" Column="46" TopLine="152"/>
       </Position9>
       <Position10>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="151" Column="85" TopLine="139"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="206" Column="42" TopLine="180"/>
       </Position10>
       <Position11>
-        <Filename Value="DEGui.pp"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="208" Column="15" TopLine="182"/>
       </Position11>
       <Position12>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="329" Column="30" TopLine="303"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="212" Column="15" TopLine="186"/>
       </Position12>
       <Position13>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="118" Column="42" TopLine="110"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="216" Column="15" TopLine="191"/>
       </Position13>
       <Position14>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="128" Column="37" TopLine="110"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="220" Column="16" TopLine="195"/>
       </Position14>
       <Position15>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="118" Column="53" TopLine="110"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="234" Column="15" TopLine="209"/>
       </Position15>
       <Position16>
-        <Filename Value="vsdeparameters.pp"/>
-        <Caret Line="256" Column="39" TopLine="241"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="316" Column="39" TopLine="290"/>
       </Position16>
       <Position17>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="159" Column="8" TopLine="133"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="317" Column="8" TopLine="291"/>
       </Position17>
       <Position18>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="160" Column="24" TopLine="144"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="327" Column="27" TopLine="301"/>
       </Position18>
       <Position19>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="103" Column="31" TopLine="87"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="340" Column="21" TopLine="314"/>
       </Position19>
       <Position20>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="95" Column="11" TopLine="136"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="381" Column="217" TopLine="351"/>
       </Position20>
       <Position21>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="160" Column="24" TopLine="144"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="51" Column="21" TopLine="35"/>
       </Position21>
       <Position22>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="159" Column="6" TopLine="147"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="105" Column="8" TopLine="79"/>
       </Position22>
       <Position23>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="151" Column="28" TopLine="135"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="118" Column="63" TopLine="92"/>
       </Position23>
       <Position24>
-        <Filename Value="DEGui.pp"/>
-        <Caret Line="162" Column="31" TopLine="135"/>
+        <Filename Value="DiffEvol.pp"/>
+        <Caret Line="157" Column="8" TopLine="131"/>
       </Position24>
       <Position25>
-        <Filename Value="DiffEvol.pp"/>
-        <Caret Line="331" Column="55" TopLine="319"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="85" Column="22" TopLine="63"/>
       </Position25>
       <Position26>
-        <Filename Value="DiffEvol.pp"/>
-        <Caret Line="7" Column="17"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="52" TopLine="36"/>
       </Position26>
       <Position27>
-        <Filename Value="DiffEvol.pp"/>
-        <Caret Line="334" Column="8" TopLine="313"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="28" Column="43" TopLine="64"/>
       </Position27>
       <Position28>
-        <Filename Value="DiffEvol.pp"/>
-        <Caret Line="317" TopLine="258"/>
+        <Filename Value="oscilloscope.pp"/>
+        <Caret Line="23" Column="5" TopLine="10"/>
       </Position28>
       <Position29>
-        <Filename Value="DiffEvol.pp"/>
-        <Caret Line="46" Column="5" TopLine="180"/>
+        <Filename Value="vsmodel.pp"/>
+        <Caret Line="2099" Column="33" TopLine="2083"/>
       </Position29>
       <Position30>
-        <Filename Value="DiffEvol.pp"/>
-        <Caret Line="52" Column="14" TopLine="345"/>
+        <Filename Value="DEGui.pp"/>
+        <Caret Line="445" TopLine="385"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

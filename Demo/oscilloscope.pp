@@ -25,6 +25,7 @@ type
     { private declarations }
   public
     { public declarations }
+    procedure PlotCanvas(Sender: TObject);
   end;
 
 var
@@ -40,6 +41,11 @@ implementation
 
 
 procedure TOscilloscope.PlotButtonClick(Sender: TObject);
+begin
+  PlotCanvas(Sender);
+end;
+
+procedure TOscilloscope.PlotCanvas(Sender: TObject);
 var i,amp,x01,y01,x02,y02,imax,dt1,dt2,func:integer;
 begin
 imax:=100;                                    // число точек в периоде
@@ -82,7 +88,6 @@ func:=-round(amp*sin(2*pi/imax*i*dt2));
   Canvas.LineTo(x02+i*dt1,y02+func);
 end;
 end;
-
 
 end.
 
