@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="12">
+      <Unit0>
+        <Filename Value="test_devec3.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="36" Y="18"/>
+        <UsageCount Value="65"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="udevec3.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="3" Y="21"/>
+        <UsageCount Value="65"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="genps.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="3" Y="3"/>
+        <UsageCount Value="65"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="decl.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <WindowIndex Value="1"/>
+        <TopLine Value="106"/>
+        <CursorPos X="15" Y="141"/>
+        <UsageCount Value="65"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="../Demo/TestFunctions.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="65"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="devec3.pp"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="16"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="../../storn_pascal/_EVEC3V1.PAS"/>
+        <UnitName Value="devec3"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="6"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../../storn_pascal/GENPS.DE"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="23" Y="79"/>
+        <UsageCount Value="6"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="../../storn_pascal/DECL.DE"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="92"/>
+        <CursorPos X="46" Y="146"/>
+        <UsageCount Value="6"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="../../storn_pascal/DETER.DE"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="16" Y="24"/>
+        <UsageCount Value="6"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="../../storn_pascal/OUT_PROC.DE"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="11" Y="25"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../../storn_pascal/_EVEC3V5.PAS"/>
+        <UnitName Value="devec3"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="484"/>
+        <CursorPos X="29" Y="513"/>
+        <UsageCount Value="32"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit11>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="106" Column="5" TopLine="48"/>
+      </Position1>
+      <Position2>
+        <Filename Value="decl.pas"/>
+        <Caret Line="3" Column="3"/>
+      </Position2>
+      <Position3>
+        <Filename Value="genps.pas"/>
+        <Caret Line="3" Column="3"/>
+      </Position3>
+      <Position4>
+        <Filename Value="genps.pas"/>
+        <Caret Line="47" Column="20" TopLine="32"/>
+      </Position4>
+      <Position5>
+        <Filename Value="genps.pas"/>
+        <Caret Line="4" Column="3"/>
+      </Position5>
+      <Position6>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="179" TopLine="162"/>
+      </Position6>
+      <Position7>
+        <Filename Value="genps.pas"/>
+        <Caret Line="46" Column="3" TopLine="35"/>
+      </Position7>
+      <Position8>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="179" TopLine="162"/>
+      </Position8>
+      <Position9>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="180" TopLine="162"/>
+      </Position9>
+      <Position10>
+        <Filename Value="decl.pas"/>
+        <Caret Line="23" Column="9"/>
+      </Position10>
+      <Position11>
+        <Filename Value="decl.pas"/>
+        <Caret Line="4" Column="3"/>
+      </Position11>
+      <Position12>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="179" TopLine="163"/>
+      </Position12>
+      <Position13>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="189" TopLine="170"/>
+      </Position13>
+      <Position14>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="190" TopLine="170"/>
+      </Position14>
+      <Position15>
+        <Filename Value="decl.pas"/>
+        <Caret Line="22" Column="6"/>
+      </Position15>
+      <Position16>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="181" Column="19" TopLine="160"/>
+      </Position16>
+      <Position17>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="178" TopLine="160"/>
+      </Position17>
+      <Position18>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="179" TopLine="160"/>
+      </Position18>
+      <Position19>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="181" TopLine="160"/>
+      </Position19>
+      <Position20>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="191" Column="11" TopLine="169"/>
+      </Position20>
+      <Position21>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="185" Column="25" TopLine="169"/>
+      </Position21>
+      <Position22>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="192" TopLine="169"/>
+      </Position22>
+      <Position23>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="61" Column="16" TopLine="36"/>
+      </Position23>
+      <Position24>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="193" Column="13" TopLine="171"/>
+      </Position24>
+      <Position25>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="192" TopLine="171"/>
+      </Position25>
+      <Position26>
+        <Filename Value="genps.pas"/>
+        <Caret Line="41" Column="25" TopLine="19"/>
+      </Position26>
+      <Position27>
+        <Filename Value="udevec3.pp"/>
+        <Caret TopLine="157"/>
+      </Position27>
+      <Position28>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="637" Column="24" TopLine="539"/>
+      </Position28>
+      <Position29>
+        <Filename Value="udevec3.pp"/>
+        <Caret Line="585" Column="21" TopLine="567"/>
+      </Position29>
+      <Position30>
+        <Filename Value="genps.pas"/>
+        <Caret TopLine="70"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>
